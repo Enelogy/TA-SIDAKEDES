@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        @@include("partials/title-meta.html", {"title": "Companies"})
+
+		@@include('./partials/head-css.html')
+
+    </head>
+
+    <body class="loading">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            @@include('./partials/left-sidebar.html')
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    @@include('./partials/topbar.html')
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box page-title-box-alt">
+                                    <h4 class="page-title">Companies</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Apps</a></li>
+                                            <li class="breadcrumb-item active">Companies</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <form class="form-inline">
+                                                    <div class="form-group">
+                                                        <label for="inputPassword2" class="sr-only">Search</label>
+                                                        <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
+                                                    </div>
+                                                    <div class="form-group mx-sm-3">
+                                                        <label for="status-select" class="mr-2">Sort By</label>
+                                                        <select class="custom-select" id="status-select">
+                                                            <option>Select</option>
+                                                            <option>Date</option>
+                                                            <option selected>Name</option>
+                                                            <option>Revenue</option>
+                                                            <option>Employees</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-6">
+                                                <div class="text-lg-right mt-3 mt-lg-0">
+                                                    <button type="button" class="btn btn-success waves-effect waves-light mr-1"><i class="mdi mdi-cog"></i></button>
+                                                    <button type="button" class="btn btn-danger waves-effect waves-light mr-1"><i class="mdi mdi-plus-circle mr-1"></i> Add New</button>
+                                                </div>
+                                            </div><!-- end col-->
+                                        </div> <!-- end row -->
+                                    </div>
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row -->  
+
+                        <div class="row">
+                            
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/airbnb.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Airbnb Inc.</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> San Francisco, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">260 cr</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">3.1k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/apple.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Apple Inc.</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> Cupertino, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">22,923.4 cr</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">47k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/google.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Google LLC</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> Menlo Park, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">110 bn</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">72k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/amazon.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Amazon Inc.</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> Seattle, Washington
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">17,786 cr</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">566k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/facebook.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Facebook Inc.</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> Cambridge, Massachusetts
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">9.16 bn</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">25.1k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/cisco.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Cisco Systems</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> San Jose, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">4,800.5 cr</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">73.4k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/google.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Google LLC</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> Menlo Park, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">110 bn</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">72k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/apple.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Apple Inc.</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> Cupertino, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">22,923.4 cr</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">47k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-md mr-3">
+                                                <div class="avatar-title bg-light rounded-circle">
+                                                    <img src="../assets/images/companies/airbnb.png" alt="logo" class="avatar-sm rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="my-1"><a href="javascript:void(0);" class="text-dark">Airbnb Inc.</a></h4>
+                                                <p class="text-muted text-truncate mb-0">
+                                                    <i class="ri-map-pin-line align-bottom mr-1"></i> San Francisco, California
+                                                </p>
+                                            </div>
+                                            <div class="dropdown">
+                                                <a class="text-body dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical font-20"></i>
+                                                </a>
+                                              
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                  <a class="dropdown-item" href="#">Action</a>
+                                                  <a class="dropdown-item" href="#">Another action</a>
+                                                  <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="text-muted">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Revenue (USD)</p>
+                                                        <h5 class="mb-sm-0">260 cr</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div>
+                                                        <p class="text-truncate mb-0">Number of employees</p>
+                                                        <h5 class="mb-sm-0">3.1k</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row mb-4">
+                            <div class="col-sm-6">
+                                <div>
+                                    <h5 class="font-14 text-body">Showing Page 2 Of 94</h5>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="float-sm-right">
+                                    <ul class="pagination pagination-rounded mb-sm-0">
+                                        <li class="page-item disabled">
+                                            <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link">1</a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a href="#" class="page-link">2</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link">3</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link">4</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link">5</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+
+                </div> <!-- content -->
+
+                @@include('./partials/footer.html')
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        @@include('./partials/right-sidebar.html')
+
+        <!-- Vendor js -->
+        <script src="../assets/js/vendor.min.js"></script>
+
+        <!-- App js -->
+        <script src="../assets/js/app.min.js"></script>
+        
+    </body>
+</html>
