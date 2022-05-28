@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\penduduk;
 
 use App\Http\Controllers\Controller;
-use App\Models\kematian;
+use App\Models\migrasi;
 use Illuminate\Http\Request;
-use App\Models\penduduk;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use App\Models\penduduk;
 
 
-class CKematian extends Controller
+class CPM extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +20,12 @@ class CKematian extends Controller
     public function index()
     {
         $penduduk = penduduk::all();
+
+        $id_user = Auth::user()->id;
+
+
         if (request()->ajax()) {
-            return Datatables::of(kematian::all())->addIndexColumn()->addColumn('aksi', function ($data) {
+            return Datatables::of(migrasi::all())->addIndexColumn()->addColumn('aksi', function ($data) {
                 $dataj = json_encode($data);
 
                 $btn = "<ul class='list-inline mb-0'>
@@ -38,15 +43,12 @@ class CKematian extends Controller
             })->addColumn('nik', function ($data) {
                 $btn = $data->penduduk->nik;
                 return $btn;
-            })->addColumn('tempat_lahir', function ($data) {
-                $tempat = $data->penduduk->tempat_lahir;
-                return $tempat;
-            })->addColumn('tanggal_lahir', function ($data) {
-                $tempat = $data->penduduk->tanggal_lahir;
-                return $tempat;
-            })->rawColumns(['aksi', 'nama', 'nik', 'tempat_lahir', 'tanggal_lahir'])->make(true);
+            })->addColumn('jenis_kelamin', function ($data) {
+                $btn = $data->penduduk->jenis_kelamin;
+                return $btn;
+            })->rawColumns(['aksi', 'nama', 'nik'])->make(true);
         }
-        return view('admin.va_kematian', compact('penduduk'));
+        return view('penduduk.vp_m', compact('penduduk'));
     }
 
     /**
@@ -67,24 +69,7 @@ class CKematian extends Controller
      */
     public function store(Request $request)
     {
-        kematian::create([
-            "id_penduduk" => $request->id_penduduk,
-            "nama_kem" => $request->nama_kem,
-            "jk_kem" => $request->jk_kem,
-            "alamat_kem" => $request->alamat_kem,
-            "hari" => $request->hari,
-            "umur_kem" => $request->umur_kem,
-            "tanggal" => $request->tanggal,
-            "tmpt_kem" => $request->tmpt_kem,
-            "penyebab" => $request->penyebab,
-            "hub_kem" => $request->hub_kem,
-            "status_kem" => 0,
-        ]);
-        $return = array(
-            'status'    => true,
-            'message'    => 'Data berhasil disimpan..',
-        );
-        return response()->json($return);
+        //
     }
 
     /**
@@ -106,28 +91,7 @@ class CKematian extends Controller
      */
     public function edit($id)
     {
-        kematian::where('id', $id)
-            ->update([
-                'status_kem' => 1,
-            ]);
-        $return = array(
-            'status'    => true,
-            'message'    => 'Data berhasil diupdate..',
-        );
-        return response()->json($return);
-    }
-
-    public function edit_dua($id)
-    {
-        kematian::where('id', $id)
-            ->update([
-                'status_kem' => 2,
-            ]);
-        $return = array(
-            'status'    => true,
-            'message'    => 'Data berhasil diupdate..',
-        );
-        return response()->json($return);
+        //
     }
 
     /**
@@ -150,11 +114,6 @@ class CKematian extends Controller
      */
     public function destroy($id)
     {
-        $res = kematian::findOrFail($id);
-        if ($res == null) {
-            return false;
-        }
-        $res->delete();
-        return true;
+        //
     }
 }

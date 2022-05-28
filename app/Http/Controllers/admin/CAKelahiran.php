@@ -27,6 +27,7 @@ class CAKelahiran extends Controller
                 <li class='list-inline-item'>
                 <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
                 <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
+                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
                 </li>
 
                 </ul>";
@@ -148,6 +149,11 @@ class CAKelahiran extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = kelahiran::findOrFail($id);
+        if ($res == null) {
+            return false;
+        }
+        $res->delete();
+        return true;
     }
 }

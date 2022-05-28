@@ -98,6 +98,23 @@
 
 
             tabel = $("#tabelbasic").DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: "print",
+                    text: "Print - Results",
+                    exportOptions: {
+                        //columns: ":visible"
+                        columns: function(idx, data, node) {
+                            if (node.innerHTML == "Status" || node.hidden)
+                                return false;
+                            else if (node.innerHTML == "Aksi" || node.hidden)
+                                return false;
+                            return true;
+                        }
+                    }
+
+
+                }],
                 columnDefs: [{
                         targets: 0,
                         width: "10%",
@@ -150,7 +167,8 @@
                     "render": function(data) {
                         var date = new Date(data);
                         var month = date.getMonth() + 1;
-                        return (month.toString().length > 1 ? month : "0" + month) + "/" + date
+                        return (month.toString().length > 1 ? month : "0" + month) + "/" +
+                            date
                             .getDate() + "/" + date.getFullYear();
                     }
                 }, {
@@ -269,6 +287,71 @@
                         });
                     }
                 })
+
+            }
+        }
+
+        function updatedua(id) {
+            data = confirm("Klik Ok Untuk Melanjutkan");
+
+            if (data) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: url + '/admin/kartu-keluarga-sementara/updatedua/' + id,
+                    type: "POST",
+                    success: function(e) {
+                        console.log(e);
+                        // $.LoadingOverlay("hide");
+                        tabel.ajax.reload();
+
+                        Lobibox.notify('success', {
+                            pauseDelayOnHover: true,
+                            continueDelayOnInactiveTab: false,
+                            position: 'top right',
+                            icon: 'bx bx-check-circle',
+                            msg: 'Data Berhasi Dihapus'
+                        });
+                    }
+                })
+
+            }
+        }
+
+        function hapus(id) {
+            data = confirm("Klik Ok Untuk Melanjutkan");
+
+            if (data) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                // $.LoadingOverlay("show");
+
+                $.ajax({
+                    url: url + '/admin/kartu-keluarga-sementara/' + id,
+                    type: "delete",
+                    success: function(e) {
+                        console.log(e);
+                        // $.LoadingOverlay("hide");
+                        // Lobibox.notify('success', {
+                        //     pauseDelayOnHover: true,
+                        //     continueDelayOnInactiveTab: false,
+                        //     position: 'top right',
+                        //     icon: 'bx bx-check-circle',
+                        //     msg: 'Data Berhasi Dihapus'
+                        // });
+                        if (e == '1') {
+                            tabel.ajax.reload();
+                        }
+                        // window.location.reload();
+                    }
+                });
 
             }
         }

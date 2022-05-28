@@ -28,6 +28,7 @@ class CAKeterangan_pindah_penduduk extends Controller
                 <li class='list-inline-item'>
                 <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
                 <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
+                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
                 </li>
 
                 </ul>";
@@ -38,13 +39,10 @@ class CAKeterangan_pindah_penduduk extends Controller
             })->addColumn('nik', function ($data) {
                 $btn = $data->penduduk->nik;
                 return $btn;
-            })->addColumn('tempat_lahir', function ($data) {
-                $tempat = $data->penduduk->tempat_lahir;
-                return $tempat;
-            })->addColumn('tanggal_lahir', function ($data) {
-                $tempat = $data->penduduk->tanggal_lahir;
-                return $tempat;
-            })->rawColumns(['aksi', 'nama', 'nik', 'tempat_lahir', 'tanggal_lahir'])->make(true);
+            })->addColumn('jenis_kelamin', function ($data) {
+                $btn = $data->penduduk->jenis_kelamin;
+                return $btn;
+            })->rawColumns(['aksi', 'nama', 'nik'])->make(true);
         }
         return view('admin.va_m', compact('penduduk'));
     }
@@ -67,7 +65,24 @@ class CAKeterangan_pindah_penduduk extends Controller
      */
     public function store(Request $request)
     {
-        //
+        migrasi::create([
+            "id_penduduk" => $request->id_penduduk,
+            "alamat_tujuan" => $request->alamat_tujuan,
+            "jumlah_pindah" => 1,
+            "status_migrasi" => 0,
+            "desa_migrasi" => $request->desa_migrasi,
+            "kec_migrasi" => $request->kec_migrasi,
+            "kab_migrasi" => $request->kab_migrasi,
+            "prov_migrasi" => $request->prov_migrasi,
+            "alasan_migrasi" => $request->alasan_migrasi,
+            "tgl_migrasi" => $request->tgl_migrasi,
+            "jenis_migrasi" => $request->jenis_migrasi,
+        ]);
+        $return = array(
+            'status'    => true,
+            'message'    => 'Data berhasil disimpan..',
+        );
+        return response()->json($return);
     }
 
     /**
@@ -89,7 +104,28 @@ class CAKeterangan_pindah_penduduk extends Controller
      */
     public function edit($id)
     {
-        //
+        migrasi::where('id', $id)
+            ->update([
+                'status_migrasi' => 1,
+            ]);
+        $return = array(
+            'status'    => true,
+            'message'    => 'Data berhasil diupdate..',
+        );
+        return response()->json($return);
+    }
+
+    public function edit_dua($id)
+    {
+        migrasi::where('id', $id)
+            ->update([
+                'status_migrasi' => 2,
+            ]);
+        $return = array(
+            'status'    => true,
+            'message'    => 'Data berhasil diupdate..',
+        );
+        return response()->json($return);
     }
 
     /**
@@ -112,6 +148,11 @@ class CAKeterangan_pindah_penduduk extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = migrasi::findOrFail($id);
+        if ($res == null) {
+            return false;
+        }
+        $res->delete();
+        return true;
     }
 }

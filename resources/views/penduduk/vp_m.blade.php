@@ -1,4 +1,4 @@
-@extends('layouts.vl_admin')
+@extends('layouts.vl_penduduk')
 @section('content')
     <div class="content">
 
@@ -31,7 +31,6 @@
                                         <th>Tanggal Pindah</th>
                                         <th>Alasan Pindah</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -111,8 +110,6 @@
     </div>
 @endsection
 
-
-
 @push('addon-script')
     <script>
         var url = window.location.origin;
@@ -121,23 +118,6 @@
 
 
             tabel = $("#tabelbasic").DataTable({
-                dom: 'Bfrtip',
-                buttons: [{
-                    extend: "print",
-                    text: "Print - Results",
-                    exportOptions: {
-                        //columns: ":visible"
-                        columns: function(idx, data, node) {
-                            if (node.innerHTML == "Status" || node.hidden)
-                                return false;
-                            else if (node.innerHTML == "Aksi" || node.hidden)
-                                return false;
-                            return true;
-                        }
-                    }
-
-
-                }],
                 columnDefs: [{
                         targets: 0,
                         width: "10%",
@@ -161,15 +141,6 @@
                         targets: 1,
                         width: "10%",
                     },
-
-                    {
-                        targets: 1,
-                        width: "10%",
-                    },
-                    {
-                        targets: 1,
-                        width: "10%",
-                    },
                     {
                         targets: 2,
                         width: "20%",
@@ -179,7 +150,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ url('admin/keterangan-pindah-penduduk') }}",
+                    url: "{{ url('penduduk/pm') }}",
                 },
                 columns: [{
                         nama: 'DT_RowIndex',
@@ -223,10 +194,6 @@
                             }
                         }
                     },
-                    {
-                        nama: 'aksi',
-                        data: 'aksi'
-                    },
                 ],
 
             });
@@ -266,101 +233,5 @@
             var title = " koko";
             $('#modalbasic').modal('show');
         });
-
-        function update(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url + '/admin/keterangan-pindah-penduduk/update/' + id,
-                    type: "POST",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        tabel.ajax.reload();
-
-                        Lobibox.notify('success', {
-                            pauseDelayOnHover: true,
-                            continueDelayOnInactiveTab: false,
-                            position: 'top right',
-                            icon: 'bx bx-check-circle',
-                            msg: 'Data Berhasi Dihapus'
-                        });
-                    }
-                })
-
-            }
-        }
-
-        function updatedua(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url + '/admin/keterangan-pindah-penduduk/updatedua/' + id,
-                    type: "POST",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        tabel.ajax.reload();
-
-                        Lobibox.notify('success', {
-                            pauseDelayOnHover: true,
-                            continueDelayOnInactiveTab: false,
-                            position: 'top right',
-                            icon: 'bx bx-check-circle',
-                            msg: 'Data Berhasi Dihapus'
-                        });
-                    }
-                })
-
-            }
-        }
-
-        function hapus(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                // $.LoadingOverlay("show");
-
-                $.ajax({
-                    url: url + '/admin/keterangan-pindah-penduduk/' + id,
-                    type: "delete",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        // Lobibox.notify('success', {
-                        //     pauseDelayOnHover: true,
-                        //     continueDelayOnInactiveTab: false,
-                        //     position: 'top right',
-                        //     icon: 'bx bx-check-circle',
-                        //     msg: 'Data Berhasi Dihapus'
-                        // });
-                        if (e == '1') {
-                            tabel.ajax.reload();
-                        }
-                        // window.location.reload();
-                    }
-                });
-
-            }
-        }
     </script>
 @endpush

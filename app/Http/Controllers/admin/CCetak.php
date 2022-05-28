@@ -8,6 +8,7 @@ use App\Models\kartu_keluarga_s;
 use App\Models\kelahiran;
 use App\Models\kematian;
 use App\Models\ktp_s;
+use App\Models\migrasi;
 use App\Models\penduduk;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -48,6 +49,14 @@ class CCetak extends Controller
     {
         $datakks = ktp_s::where('status_ktps', 1)->get();
         $datacetak = 'ktp';
+
+        return view('admin.va_cetak_kks', compact('datakks', 'datacetak'));
+    }
+
+    public function mf()
+    {
+        $datakks = migrasi::where('status_migrasi', 1)->get();
+        $datacetak = 'm';
 
         return view('admin.va_cetak_kks', compact('datakks', 'datacetak'));
     }
@@ -214,6 +223,44 @@ class CCetak extends Controller
 
         ];
         $pdf = PDF::loadview('cetak/vc_ktp', $details);
+        // return $pdf->download('surat-keterangan-kematian.pdf');
+        return $pdf->stream();
+        // return view('cetak/vc_kks');
+    }
+
+    public function m(Request $request)
+    {
+        $id = $request->id_penduduk;
+        $datam = migrasi::where('id', $id)->get();
+        $id_penduduk = $datam[0]->id_penduduk;
+        $datapenduduk = penduduk::where('id', $id_penduduk)->get();
+
+        $details = [
+            'nama' => $datapenduduk[0]->nama,
+            'jenis_kelamin' => $datapenduduk[0]->jenis_kelamin,
+            'tempat_lahir' => $datapenduduk[0]->tempat_lahir,
+            'tanggal_lahir' => $datapenduduk[0]->tanggal_lahir,
+            'kewarganegaraan' => $datapenduduk[0]->kewarganegaraan,
+            'agama' => $datapenduduk[0]->agama,
+            'status' => $datapenduduk[0]->status,
+            'pendidikan' => $datapenduduk[0]->pendidikan,
+            'ayah' => $datapenduduk[0]->ayah,
+            'ibu' => $datapenduduk[0]->ibu,
+            'alamat' => $datapenduduk[0]->alamat,
+            'kk' => $datapenduduk[0]->kk,
+            'status' => $datapenduduk[0]->status,
+            'pekerjaan' => $datapenduduk[0]->pekerjaan,
+            'nik' => $datapenduduk[0]->nik,
+            'alamat_tujuan' => $datam[0]->alamat_tujuan,
+            'desa_migrasi' => $datam[0]->desa_migrasi,
+            'kec_migrasi' => $datam[0]->kec_migrasi,
+            'kab_migrasi' => $datam[0]->kab_migrasi,
+            'prov_migrasi' => $datam[0]->prov_migrasi,
+            'tgl_migrasi' => $datam[0]->tgl_migrasi,
+            'alasan_migrasi' => $datam[0]->alasan_migrasi,
+
+        ];
+        $pdf = PDF::loadview('cetak/vc_m', $details);
         // return $pdf->download('surat-keterangan-kematian.pdf');
         return $pdf->stream();
         // return view('cetak/vc_kks');

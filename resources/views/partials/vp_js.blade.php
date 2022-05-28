@@ -58,3 +58,9 @@ src="{{ asset('minton/dist/') }}/assets/libs/admin-resources/jquery.vectormap/ma
 
 <!-- App js -->
 <script src="{{ asset('minton/dist/') }}/assets/js/app.min.js"></script>
+
+<!-- Datatable -->
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script> --}}

@@ -27,6 +27,8 @@
                                     Kelahiran
                                 @elseif ($datacetak == 'ktp')
                                     Kartu Tanda Penduduk Sementara
+                                @elseif ($datacetak == 'm')
+                                    Keterangan Pindah Penduduk
                                 @endif
                             </h4>
                             <div class="form-group mb-3">
@@ -46,6 +48,10 @@
                                             <option value={{ $data->id }}>{{ $data->nama_lahir }}</option>
                                         @endforeach
                                     @elseif ($datacetak == 'ktp')
+                                        @foreach ($datakks as $data)
+                                            <option value={{ $data->id }}>{{ $data->penduduk->nama }}</option>
+                                        @endforeach
+                                    @elseif ($datacetak == 'm')
                                         @foreach ($datakks as $data)
                                             <option value={{ $data->id }}>{{ $data->penduduk->nama }}</option>
                                         @endforeach

@@ -9,4 +9,8 @@ class migrasi extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function penduduk()
+    {
+        return $this->hasOne(penduduk::class, 'id', 'id_penduduk');
+    }
 }

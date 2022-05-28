@@ -49,7 +49,7 @@
                           <h5 class="menu-title">Pemberitahuan</h5>
                           <ul class="nav flex-column">
                               <li class="nav-item">
-                                  <a class="nav-link" href="belum">Umum</a>
+                                  <a class="nav-link" href="/penduduk/panduan">Cara Pembuatan Surat</a>
                               </li>
                           </ul>
                       </div>
@@ -71,6 +71,9 @@
                                   <li class="nav-item">
                                       <a class="nav-link" href="/penduduk/pktp">Keterangan Kartu Tanda
                                           Pengenal</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="/penduduk/pm">Keterangan Pindah Penduduk</a>
                                   </li>
                               </ul>
                           </div>

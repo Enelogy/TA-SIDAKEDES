@@ -14,6 +14,9 @@ use App\Http\Controllers\penduduk\dashboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\penduduk\CPK;
 use App\Http\Controllers\penduduk\CPKtp;
+use App\Http\Controllers\penduduk\CPM;
+use App\Http\Controllers\penduduk\CPPanduan;
+use App\Http\Controllers\penduduk\CPPenduduk;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,7 @@ Route::get('/cetak/kks', [CCetak::class, 'kks']);
 Route::get('/cetak/kk', [CCetak::class, 'kk']);
 Route::get('/cetak/k', [CCetak::class, 'k']);
 Route::get('/cetak/ktp', [CCetak::class, 'ktp']);
+Route::get('/cetak/m', [CCetak::class, 'm']);
 
 Route::group(
     ['middleware' => ['auth']],
@@ -56,13 +60,19 @@ Route::group(
         Route::post('admin/kartu-tanda-penduduk/updatedua/{id}', [CKartu_tanda_penduduk::class, 'edit_dua']);
 
         Route::resource('admin/keterangan-pindah-penduduk', CAKeterangan_pindah_penduduk::class);
+        Route::post('admin/keterangan-pindah-penduduk/update/{id}', [CAKeterangan_pindah_penduduk::class, 'edit']);
+        Route::post('admin/keterangan-pindah-penduduk/updatedua/{id}', [CAKeterangan_pindah_penduduk::class, 'edit_dua']);
 
 
+
+        Route::resource('admin/panduan', CPPanduan::class);
 
         Route::resource('admin/cetak/kks', CCetak::class);
         Route::get('admin/cetak/kk', [CCetak::class, 'kkf']);
         Route::get('admin/cetak/k', [CCetak::class, 'kf']);
         Route::get('admin/cetak/ktp', [CCetak::class, 'ktpf']);
+        Route::get('admin/cetak/m', [CCetak::class, 'mf']);
+
 
         Route::resource('admin/kelahiran', CAKelahiran::class);
         Route::post('admin/kelahiran/update/{id}', [CAKelahiran::class, 'edit']);
@@ -70,10 +80,12 @@ Route::group(
 
 
         Route::resource('penduduk/dashboard', dashboard::class);
+        Route::resource('penduduk/panduan', CPPanduan::class);
         Route::resource('penduduk/pkks', CPkks::class);
         Route::resource('penduduk/pkk', CPKk::class);
         Route::resource('penduduk/pk', CPK::class);
         Route::resource('penduduk/pktp', CPKtp::class);
+        Route::resource('penduduk/pm', CPM::class);
     }
 );
 

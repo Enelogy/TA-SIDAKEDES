@@ -101,6 +101,9 @@
                                   <li class="nav-item">
                                       <a class="nav-link" href="/admin/cetak/ktp">Kartu Tanda Penduduk</a>
                                   </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="/admin/cetak/m">Keterangan Pindah Penduduk</a>
+                                  </li>
                               </ul>
                           </div>
                       </div>
@@ -110,7 +113,7 @@
                               <h5 class="menu-title">Pemberitahuan</h5>
                               <ul class="nav flex-column">
                                   <li class="nav-item">
-                                      <a class="nav-link" href="ui-avatars.html">Umum</a>
+                                      <a class="nav-link" href="/admin/panduan">Cara Membuat Surat</a>
                                   </li>
                               </ul>
                           </div>
