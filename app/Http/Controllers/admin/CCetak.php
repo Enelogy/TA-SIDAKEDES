@@ -265,4 +265,82 @@ class CCetak extends Controller
         return $pdf->stream();
         // return view('cetak/vc_kks');
     }
+
+    public function kksl(Request $request)
+    {
+
+        $datakksl =  DB::table('kartu_keluarga_s')
+            ->join('penduduks', 'penduduks.id', '=', 'kartu_keluarga_s.id_penduduk')
+            ->get();
+
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'KARTU KELUARGA'
+
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function kl(Request $request)
+    {
+        $datakksl =  DB::table('kelahirans')
+            ->join('penduduks', 'penduduks.id', '=', 'kelahirans.id_penduduk')
+            ->get();
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'KELAHIRAN'
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function kkl(Request $request)
+    {
+        $datakksl =  DB::table('kematians')
+            ->join('penduduks', 'penduduks.id', '=', 'kematians.id_penduduk')
+            ->get();
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'KEMATIAN'
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function ml(Request $request)
+    {
+        $datakksl =  DB::table('migrasis')
+            ->join('penduduks', 'penduduks.id', '=', 'migrasis.id_penduduk')
+            ->get();
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'PINDAH / PENDATANG'
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function ktpl(Request $request)
+    {
+        $datakksl =  DB::table('ktp_s')
+            ->join('penduduks', 'penduduks.id', '=', 'ktp_s.id_penduduk')
+            ->get();
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'KARTU TANDA PENDUDUK'
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
 }

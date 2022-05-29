@@ -50,6 +50,40 @@ class CKartu_keluarga_s extends Controller
         return view('admin.va_kks', compact('penduduk'));
     }
 
+    public function kksk()
+    {
+        $penduduk = penduduk::all();
+
+        if (request()->ajax()) {
+            return Datatables::of(kartu_keluarga_s::all())->addIndexColumn()->addColumn('aksi', function ($data) {
+                $dataj = json_encode($data);
+
+                $btn = "<ul class='list-inline mb-0'>
+                <li class='list-inline-item'>
+                <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
+                <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
+                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
+                </li>
+
+                </ul>";
+                return $btn;
+            })->addColumn('nama', function ($data) {
+                $btn = $data->penduduk->nama;
+                return $btn;
+            })->addColumn('nik', function ($data) {
+                $btn = $data->penduduk->nik;
+                return $btn;
+            })->addColumn('tempat_lahir', function ($data) {
+                $tempat = $data->penduduk->tempat_lahir;
+                return $tempat;
+            })->addColumn('tanggal_lahir', function ($data) {
+                $tempat = $data->penduduk->tanggal_lahir;
+                return $tempat;
+            })->rawColumns(['aksi', 'nama', 'nik', 'tempat_lahir', 'tanggal_lahir'])->make(true);
+        }
+        return view('admin.va_kksk', compact('penduduk'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

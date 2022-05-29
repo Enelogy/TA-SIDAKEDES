@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Keterangan Pindah Penduduk</h4>
+                            <h4 class="header-title">Keterangan Pindah / Pendatang Penduduk</h4>
                             <button type="button" id="add" name="add"
                                 class="btn btn-success btn-sm mb-2 add">Tambah</button>
                             <table id="tabelbasic" class="table dt-responsive nowrap w-100">
@@ -121,23 +121,23 @@
 
 
             tabel = $("#tabelbasic").DataTable({
-                dom: 'Bfrtip',
-                buttons: [{
-                    extend: "print",
-                    text: "Print - Results",
-                    exportOptions: {
-                        //columns: ":visible"
-                        columns: function(idx, data, node) {
-                            if (node.innerHTML == "Status" || node.hidden)
-                                return false;
-                            else if (node.innerHTML == "Aksi" || node.hidden)
-                                return false;
-                            return true;
-                        }
-                    }
+                // dom: 'Bfrtip',
+                // buttons: [{
+                //     extend: "print",
+                //     text: "Print - Results",
+                //     exportOptions: {
+                //         //columns: ":visible"
+                //         columns: function(idx, data, node) {
+                //             if (node.innerHTML == "Status" || node.hidden)
+                //                 return false;
+                //             else if (node.innerHTML == "Aksi" || node.hidden)
+                //                 return false;
+                //             return true;
+                //         }
+                //     }
 
 
-                }],
+                // }],
                 columnDefs: [{
                         targets: 0,
                         width: "10%",

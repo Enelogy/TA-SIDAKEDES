@@ -47,6 +47,37 @@ class CAKeterangan_pindah_penduduk extends Controller
         return view('admin.va_m', compact('penduduk'));
     }
 
+    public function mk()
+    {
+        $penduduk = penduduk::all();
+
+        if (request()->ajax()) {
+            return Datatables::of(migrasi::all())->addIndexColumn()->addColumn('aksi', function ($data) {
+                $dataj = json_encode($data);
+
+                $btn = "<ul class='list-inline mb-0'>
+                <li class='list-inline-item'>
+                <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
+                <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
+                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
+                </li>
+
+                </ul>";
+                return $btn;
+            })->addColumn('nama', function ($data) {
+                $btn = $data->penduduk->nama;
+                return $btn;
+            })->addColumn('nik', function ($data) {
+                $btn = $data->penduduk->nik;
+                return $btn;
+            })->addColumn('jenis_kelamin', function ($data) {
+                $btn = $data->penduduk->jenis_kelamin;
+                return $btn;
+            })->rawColumns(['aksi', 'nama', 'nik'])->make(true);
+        }
+        return view('admin.va_mk', compact('penduduk'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

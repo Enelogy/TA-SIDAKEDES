@@ -38,6 +38,12 @@ Route::get('/cetak/k', [CCetak::class, 'k']);
 Route::get('/cetak/ktp', [CCetak::class, 'ktp']);
 Route::get('/cetak/m', [CCetak::class, 'm']);
 
+Route::get('/laporan/1', [CCetak::class, 'kksl']);
+Route::get('/laporan/2', [CCetak::class, 'kkl']);
+Route::get('/laporan/3', [CCetak::class, 'kl']);
+Route::get('/laporan/4', [CCetak::class, 'ktpl']);
+Route::get('/laporan/5', [CCetak::class, 'ml']);
+
 Route::group(
     ['middleware' => ['auth']],
     function () {
@@ -65,13 +71,19 @@ Route::group(
 
 
 
-        Route::resource('admin/panduan', CPPanduan::class);
+        // Route::resource('admin/panduan', CPPanduan::class);
 
         Route::resource('admin/cetak/kks', CCetak::class);
         Route::get('admin/cetak/kk', [CCetak::class, 'kkf']);
         Route::get('admin/cetak/k', [CCetak::class, 'kf']);
         Route::get('admin/cetak/ktp', [CCetak::class, 'ktpf']);
         Route::get('admin/cetak/m', [CCetak::class, 'mf']);
+
+        Route::get('admin/kelola-kks', [CKartu_keluarga_s::class, 'kksk']);
+        Route::get('admin/kelola-kk', [CKematian::class, 'kkk']);
+        Route::get('admin/kelola-k', [CAKelahiran::class, 'kk']);
+        Route::get('admin/kelola-ktp', [CKartu_tanda_penduduk::class, 'ktpk']);
+        Route::get('admin/kelola-m', [CAKeterangan_pindah_penduduk::class, 'mk']);
 
 
         Route::resource('admin/kelahiran', CAKelahiran::class);

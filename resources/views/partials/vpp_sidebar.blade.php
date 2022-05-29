@@ -73,7 +73,8 @@
                                           Pengenal</a>
                                   </li>
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/penduduk/pm">Keterangan Pindah Penduduk</a>
+                                      <a class="nav-link" href="/penduduk/pm">Keterangan Pindah / Pendatang
+                                          Penduduk</a>
                                   </li>
                               </ul>
                           </div>

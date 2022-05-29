@@ -97,23 +97,23 @@
 
 
             tabel = $("#tabelbasic").DataTable({
-                dom: 'Bfrtip',
-                buttons: [{
-                    extend: "print",
-                    text: "Print - Results",
-                    exportOptions: {
-                        //columns: ":visible"
-                        columns: function(idx, data, node) {
-                            if (node.innerHTML == "Status" || node.hidden)
-                                return false;
-                            else if (node.innerHTML == "Aksi" || node.hidden)
-                                return false;
-                            return true;
-                        }
-                    }
+                // dom: 'Bfrtip',
+                // buttons: [{
+                //     extend: "print",
+                //     text: "Print - Results",
+                //     exportOptions: {
+                //         //columns: ":visible"
+                //         columns: function(idx, data, node) {
+                //             if (node.innerHTML == "Status" || node.hidden)
+                //                 return false;
+                //             else if (node.innerHTML == "Aksi" || node.hidden)
+                //                 return false;
+                //             return true;
+                //         }
+                //     }
 
 
-                }],
+                // }],
                 columnDefs: [{
                         targets: 0,
                         width: "10%",

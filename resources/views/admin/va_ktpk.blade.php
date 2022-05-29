@@ -1,4 +1,4 @@
-@extends('layouts.vl_penduduk')
+@extends('layouts.vl_admin')
 @section('content')
     <div class="content">
 
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Kelola Surat</h4>
+                        <h4 class="page-title">Kelola Laporan</h4>
                     </div>
                 </div>
             </div>
@@ -18,19 +18,20 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Keterangan Pindah / Pendatang Penduduk</h4>
-                            <button type="button" id="add" name="add"
-                                class="btn btn-success btn-sm mb-2 add">Tambah</button>
+                            <h4 class="header-title">Kartu Tanda Penduduk Sementara</h4>
+                            <input type="hidden" value="4" id="id_jenis" name="id_jenis">
+                            <button type="button submit" id="submit" name="submit"
+                                class="btn btn-success btn-sm mb-2 add">Cetak</button>
                             <table id="tabelbasic" class="table dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>NIK</th>
                                         <th>Nama</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Tanggal Pindah</th>
-                                        <th>Alasan Pindah</th>
+                                        <th>Tempat Lahir</th>
+                                        <th>Tanggal Lahir</th>
                                         <th>Status</th>
+                                        {{-- <th>Aksi</th> --}}
                                     </tr>
                                 </thead>
                             </table>
@@ -58,7 +59,7 @@
                         <div class="form mb-3">
                             <label data-error="wrong" data-success="right" for="orangeForm-name">Nama Penduduk</label>
                             <div class="form-group mb-3">
-                                <select class="form-control mb-3" data-toggle="select2" aria-hidden="true" id="id_penduduk"
+                                <select class="form-control " data-toggle="select2" aria-hidden="true" id="id_penduduk"
                                     name="id_penduduk">
                                     <option value="">Pilih</option>
                                     @foreach ($penduduk as $data)
@@ -66,37 +67,14 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <label data-error="wrong" data-success="right" for="desa_ktps">Desa</label>
+                            <input class="form-control mb-3" type="text" name="desa_ktps" id="desa_ktps">
 
-                            <label data-error="wrong" data-success="right" for="alamat_tujuan">Alamat Tujuan</label>
-                            <input type="text" name="alamat_tujuan" id="alamat_tujuan" class="form-control mb-3">
+                            <label data-error="wrong" data-success="right" for="kec_ktps">Kecamatan</label>
+                            <input class="form-control " type="text" name="kec_ktps" id="kec_ktps">
 
-                            <label data-error="wrong" data-success="right" for="desa_migrasi">Desa/ Kelurahan Tujuan</label>
-                            <input type="text" name="desa_migrasi" id="desa_migrasi" class="form-control mb-3">
-
-                            <label data-error="wrong" data-success="right" for="kec_migrasi">Kecamatan Tujuan</label>
-                            <input type="text" name="kec_migrasi" id="kec_migrasi" class="form-control mb-3">
-
-                            <label data-error="wrong" data-success="right" for="kab_migrasi">Kabupaten Tujuan</label>
-                            <input type="text" name="kab_migrasi" id="kab_migrasi" class="form-control mb-3">
-
-                            <label data-error="wrong" data-success="right" for="prov_migrasi">Provinsi Tujuan</label>
-                            <input type="text" name="prov_migrasi" id="prov_migrasi" class="form-control mb-3">
-
-                            <label data-error="wrong" data-success="right" for="tgl_migrasi">Tanggal Pindah</label>
-                            <input type="date" name="tgl_migrasi" id="tgl_migrasi" class="form-control mb-3">
-
-                            <label data-error="wrong" data-success="right" for="alasan_migrasi">Alasan Pindah</label>
-                            <input type="text" name="alasan_migrasi" id="alasan_migrasi" class="form-control mb-3">
-
-                            <label data-error="wrong" data-success="right" for="jenis_migrasi">Jenis</label>
-                            <select name="jenis_migrasi" id="jenis_migrasi" class="form-control mb-3">
-
-                                <option value="1">Pendatang</option>
-                                <option value="2">Pindah / Keluar</option>
-                            </select>
-
-                            {{-- <label data-error="wrong" data-success="right" for="jumlah_pindah">Jumlah Pindah</label>
-                            <input type="number" name="jumlah_pindah" id="jumlah_pindah" class="form-control mb-3"> --}}
+                            {{-- <label data-error="wrong" data-success="right" for="kab_ktps">Kabupaten</label> --}}
+                            <input class="form-control " type="hidden" name="kab_ktps" id="kab_ktps" value="Barru">
 
                         </div>
                         <div class="modal-footer">
@@ -110,6 +88,8 @@
     </div>
 @endsection
 
+
+
 @push('addon-script')
     <script>
         var url = window.location.origin;
@@ -118,6 +98,23 @@
 
 
             tabel = $("#tabelbasic").DataTable({
+                // dom: 'Bfrtip',
+                // buttons: [{
+                //     extend: "print",
+                //     text: "Print - Results",
+                //     exportOptions: {
+                //         //columns: ":visible"
+                //         columns: function(idx, data, node) {
+                //             if (node.innerHTML == "Status" || node.hidden)
+                //                 return false;
+                //             else if (node.innerHTML == "Aksi" || node.hidden)
+                //                 return false;
+                //             return true;
+                //         }
+                //     }
+
+
+                // }],
                 columnDefs: [{
                         targets: 0,
                         width: "10%",
@@ -150,7 +147,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ url('penduduk/pm') }}",
+                    url: "{{ url('admin/kartu-tanda-penduduk') }}",
                 },
                 columns: [{
                         nama: 'DT_RowIndex',
@@ -162,76 +159,52 @@
                         nama: 'nama',
                         data: 'nama'
                     }, {
-                        nama: 'jenis_kelamin',
-                        data: 'jenis_kelamin'
+                        nama: 'tempat_lahir',
+                        data: 'tempat_lahir'
                     }, {
-                        nama: 'tgl_migrasi',
-                        data: 'tgl_migrasi',
+                        nama: 'tanggal_lahir',
+                        data: 'tanggal_lahir',
                         "render": function(data) {
                             var date = new Date(data);
                             var month = date.getMonth() + 1;
                             return (month.toString().length > 1 ? month : "0" + month) + "/" + date
                                 .getDate() + "/" + date.getFullYear();
                         }
-                    },
-                    {
-                        nama: 'alasan_migrasi',
-                        data: 'alasan_migrasi'
-                    },
-                    {
-                        nama: 'status_migrasi',
-                        data: 'status_migrasi',
+                    }, {
+                        nama: 'status_ktps',
+                        data: 'status_ktps',
                         "searchable": false,
                         "orderable": false,
                         "render": function(data, type, row) {
 
-                            if (row.status_migrasi == 0) {
+                            if (row.status_ktps == 0) {
                                 return 'Belum di Verifikasi';
-                            } else if (row.status_migrasi == 1) {
+                            } else if (row.status_ktps == 1) {
                                 return 'Diterima';
                             } else {
                                 return 'Ditolak';
                             }
                         }
                     },
+                    // {
+                    //     nama: 'aksi',
+                    //     data: 'aksi'
+                    // },
                 ],
 
             });
         });
 
+
         $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
-            $.ajax({
-                url: "{{ url('admin/keterangan-pindah-penduduk') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
-                    $('#submit').html('Submit');
-                    $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
-                    tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
-                }
-            });
-        });
+            var idjenis = $("#id_jenis").val();
+            // var datacetak = $("#datacetak").val();
+            console.log(idjenis);
 
+            var ini = "{{ url('/laporan/') }}" + "/" + idjenis;
+            console.log(ini);
+            window.open(ini, "_blank");
 
-        $(".add").click(function() {
-            var title = " koko";
-            $('#modalbasic').modal('show');
         });
     </script>
 @endpush

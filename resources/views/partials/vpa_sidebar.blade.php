@@ -29,7 +29,7 @@
                           <i class="ri-layout-line"></i>
                       </a>
                       <a class="nav-link" href="#uielements" data-toggle="tooltip" data-placement="right"
-                          title="Pemberitahuan" data-trigger="hover">
+                          title="Kelola Laporan" data-trigger="hover">
                           <i class="ri-pencil-ruler-2-line"></i>
                       </a>
                   </nav>
@@ -77,7 +77,7 @@
                                   </li>
                                   <li class="nav-item">
                                       <a class="nav-link" href="/admin/keterangan-pindah-penduduk">Keterangan
-                                          Pindah
+                                          Pindah / Pendatang
                                           Penduduk</a>
                                   </li>
                               </ul>
@@ -102,18 +102,34 @@
                                       <a class="nav-link" href="/admin/cetak/ktp">Kartu Tanda Penduduk</a>
                                   </li>
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/admin/cetak/m">Keterangan Pindah Penduduk</a>
+                                      <a class="nav-link" href="/admin/cetak/m">Keterangan Pindah / Pendatang
+                                          Penduduk</a>
                                   </li>
                               </ul>
                           </div>
                       </div>
 
+
                       <div class="twocolumn-menu-item" id="uielements">
                           <div class="title-box">
-                              <h5 class="menu-title">Pemberitahuan</h5>
+                              <h5 class="menu-title">Kelola Laporan</h5>
                               <ul class="nav flex-column">
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/admin/panduan">Cara Membuat Surat</a>
+                                      <a class="nav-link" href="/admin/kelola-kks">Kartu Keluarga
+                                          Sementara</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="/admin/kelola-k">Kelahiran</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="/admin/kelola-kk">Keterangan Kematian</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="/admin/kelola-ktp">Kartu Tanda Penduduk</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="/admin/kelola-m">Keterangan Pindah /Pendatang
+                                          Penduduk</a>
                                   </li>
                               </ul>
                           </div>

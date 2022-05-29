@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Kelola Surat</h4>
+                        <h4 class="page-title">Kelola Laporan</h4>
                     </div>
                 </div>
             </div>
@@ -19,8 +19,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Kelahiran</h4>
-                            <button type="button" id="add" name="add"
-                                class="btn btn-success btn-sm mb-2 add">Tambah</button>
+                            <input type="hidden" value="3" id="id_jenis" name="id_jenis">
+                            <button type="button submit" id="submit" name="submit"
+                                class="btn btn-success btn-sm mb-2 add">Cetak</button>
                             <table id="tabelbasic" class="table dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -30,7 +31,7 @@
                                         <th>Tempat, Tanggal Lahir anak</th>
                                         <th>Anak ke</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
+                                        {{-- <th>Aksi</th> --}}
                                     </tr>
                                 </thead>
                             </table>
@@ -196,144 +197,25 @@
                                 return 'Ditolak';
                             }
                         }
-                    }, {
-                        nama: 'aksi',
-                        data: 'aksi'
                     },
+                    // {
+                    //     nama: 'aksi',
+                    //     data: 'aksi'
+                    // },
                 ],
 
             });
         });
 
         $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
-            $.ajax({
-                url: "{{ url('admin/kelahiran') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
-                    $('#submit').html('Submit');
-                    $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
-                    tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
-                }
-            });
+            var idjenis = $("#id_jenis").val();
+            // var datacetak = $("#datacetak").val();
+            console.log(idjenis);
+
+            var ini = "{{ url('/laporan/') }}" + "/" + idjenis;
+            console.log(ini);
+            window.open(ini, "_blank");
+
         });
-
-
-        $(".add").click(function() {
-            var title = " koko";
-            $('#modalbasic').modal('show');
-        });
-
-        function update(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url + '/admin/kelahiran/update/' + id,
-                    type: "POST",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        tabel.ajax.reload();
-
-                        Lobibox.notify('success', {
-                            pauseDelayOnHover: true,
-                            continueDelayOnInactiveTab: false,
-                            position: 'top right',
-                            icon: 'bx bx-check-circle',
-                            msg: 'Data Berhasi Dihapus'
-                        });
-                    }
-                })
-
-            }
-        }
-
-        function updatedua(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url + '/admin/kelahiran/updatedua/' + id,
-                    type: "POST",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        tabel.ajax.reload();
-
-                        Lobibox.notify('success', {
-                            pauseDelayOnHover: true,
-                            continueDelayOnInactiveTab: false,
-                            position: 'top right',
-                            icon: 'bx bx-check-circle',
-                            msg: 'Data Berhasi Dihapus'
-                        });
-                    }
-                })
-
-            }
-        }
-
-        function hapus(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                // $.LoadingOverlay("show");
-
-                $.ajax({
-                    url: url + '/admin/kelahiran/' + id,
-                    type: "delete",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        // Lobibox.notify('success', {
-                        //     pauseDelayOnHover: true,
-                        //     continueDelayOnInactiveTab: false,
-                        //     position: 'top right',
-                        //     icon: 'bx bx-check-circle',
-                        //     msg: 'Data Berhasi Dihapus'
-                        // });
-                        if (e == '1') {
-                            tabel.ajax.reload();
-                        }
-                        // window.location.reload();
-                    }
-                });
-
-            }
-        }
     </script>
 @endpush

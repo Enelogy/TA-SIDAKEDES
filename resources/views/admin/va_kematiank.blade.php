@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Kelola Surat</h4>
+                        <h4 class="page-title">Kelola Laporan</h4>
                     </div>
                 </div>
             </div>
@@ -19,8 +19,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Keterangan Kematian</h4>
-                            <button type="button" id="add" name="add"
-                                class="btn btn-success btn-sm mb-2 add">Tambah</button>
+                            <input type="hidden" value="2" id="id_jenis" name="id_jenis">
+                            <button type="button submit" id="submit" name="submit"
+                                class="btn btn-success btn-sm mb-2 add">Cetak</button>
                             <table id="tabelbasic" class="table dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -30,7 +31,7 @@
                                         <th>Tempat Kematian</th>
                                         <th>Tanggal Kematian</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
+                                        {{-- <th>Aksi</th> --}}
                                     </tr>
                                 </thead>
                             </table>
@@ -173,178 +174,60 @@
                     url: "{{ url('admin/keterangan-kematian') }}",
                 },
                 columns: [{
-                    nama: 'DT_RowIndex',
-                    data: 'DT_RowIndex'
-                }, {
-                    nama: 'nama_kem',
-                    data: 'nama_kem'
-                }, {
-                    nama: 'nama',
-                    data: 'nama'
-                }, {
-                    nama: 'tmpt_kem',
-                    data: 'tmpt_kem'
-                }, {
-                    nama: 'tanggal',
-                    data: 'tanggal',
-                    "render": function(data) {
-                        var date = new Date(data);
-                        var month = date.getMonth() + 1;
-                        return (month.toString().length > 1 ? month : "0" + month) + "/" + date
-                            .getDate() + "/" + date.getFullYear();
-                    }
-                }, {
-                    nama: 'status_kem',
-                    data: 'status_kem',
-                    "searchable": false,
-                    "orderable": false,
-                    "render": function(data, type, row) {
-
-                        if (row.status_kem === 0) {
-                            return 'Belum di Verifikasi';
-                        } else if (row.status_kem == 1) {
-                            return 'Diterima';
-                        } else {
-                            return 'Ditolak';
+                        nama: 'DT_RowIndex',
+                        data: 'DT_RowIndex'
+                    }, {
+                        nama: 'nama_kem',
+                        data: 'nama_kem'
+                    }, {
+                        nama: 'nama',
+                        data: 'nama'
+                    }, {
+                        nama: 'tmpt_kem',
+                        data: 'tmpt_kem'
+                    }, {
+                        nama: 'tanggal',
+                        data: 'tanggal',
+                        "render": function(data) {
+                            var date = new Date(data);
+                            var month = date.getMonth() + 1;
+                            return (month.toString().length > 1 ? month : "0" + month) + "/" + date
+                                .getDate() + "/" + date.getFullYear();
                         }
-                    }
-                }, {
-                    nama: 'aksi',
-                    data: 'aksi'
-                }, ],
+                    }, {
+                        nama: 'status_kem',
+                        data: 'status_kem',
+                        "searchable": false,
+                        "orderable": false,
+                        "render": function(data, type, row) {
+
+                            if (row.status_kem === 0) {
+                                return 'Belum di Verifikasi';
+                            } else if (row.status_kem == 1) {
+                                return 'Diterima';
+                            } else {
+                                return 'Ditolak';
+                            }
+                        }
+                    },
+                    // {
+                    //     nama: 'aksi',
+                    //     data: 'aksi'
+                    // },
+                ],
 
             });
         });
 
         $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
-            $.ajax({
-                url: "{{ url('admin/keterangan-kematian') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
-                    $('#submit').html('Submit');
-                    $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
-                    tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
-                }
-            });
+            var idjenis = $("#id_jenis").val();
+            // var datacetak = $("#datacetak").val();
+            console.log(idjenis);
+
+            var ini = "{{ url('/laporan/') }}" + "/" + idjenis;
+            console.log(ini);
+            window.open(ini, "_blank");
+
         });
-
-
-        $(".add").click(function() {
-            var title = " koko";
-            $('#modalbasic').modal('show');
-        });
-
-        function update(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url + '/admin/keterangan-kematian/update/' + id,
-                    type: "POST",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        tabel.ajax.reload();
-
-                        Lobibox.notify('success', {
-                            pauseDelayOnHover: true,
-                            continueDelayOnInactiveTab: false,
-                            position: 'top right',
-                            icon: 'bx bx-check-circle',
-                            msg: 'Data Berhasi Dihapus'
-                        });
-                    }
-                })
-
-            }
-        }
-
-        function updatedua(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url + '/admin/keterangan-kematian/updatedua/' + id,
-                    type: "POST",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        tabel.ajax.reload();
-
-                        Lobibox.notify('success', {
-                            pauseDelayOnHover: true,
-                            continueDelayOnInactiveTab: false,
-                            position: 'top right',
-                            icon: 'bx bx-check-circle',
-                            msg: 'Data Berhasi Dihapus'
-                        });
-                    }
-                })
-
-            }
-        }
-
-        function hapus(id) {
-            data = confirm("Klik Ok Untuk Melanjutkan");
-
-            if (data) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                // $.LoadingOverlay("show");
-
-                $.ajax({
-                    url: url + '/admin/keterangan-kematian/' + id,
-                    type: "delete",
-                    success: function(e) {
-                        console.log(e);
-                        // $.LoadingOverlay("hide");
-                        // Lobibox.notify('success', {
-                        //     pauseDelayOnHover: true,
-                        //     continueDelayOnInactiveTab: false,
-                        //     position: 'top right',
-                        //     icon: 'bx bx-check-circle',
-                        //     msg: 'Data Berhasi Dihapus'
-                        // });
-                        if (e == '1') {
-                            tabel.ajax.reload();
-                        }
-                        // window.location.reload();
-                    }
-                });
-
-            }
-        }
     </script>
 @endpush

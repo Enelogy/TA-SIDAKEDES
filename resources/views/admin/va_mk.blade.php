@@ -1,4 +1,4 @@
-@extends('layouts.vl_penduduk')
+@extends('layouts.vl_admin')
 @section('content')
     <div class="content">
 
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Kelola Surat</h4>
+                        <h4 class="page-title">Kelola Laporan</h4>
                     </div>
                 </div>
             </div>
@@ -19,8 +19,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Keterangan Pindah / Pendatang Penduduk</h4>
-                            <button type="button" id="add" name="add"
-                                class="btn btn-success btn-sm mb-2 add">Tambah</button>
+                            <input type="hidden" value="5" id="id_jenis" name="id_jenis">
+                            <button type="button submit" id="submit" name="submit"
+                                class="btn btn-success btn-sm mb-2 add">Cetak</button>
                             <table id="tabelbasic" class="table dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -31,6 +32,7 @@
                                         <th>Tanggal Pindah</th>
                                         <th>Alasan Pindah</th>
                                         <th>Status</th>
+                                        {{-- <th>Aksi</th> --}}
                                     </tr>
                                 </thead>
                             </table>
@@ -110,6 +112,8 @@
     </div>
 @endsection
 
+
+
 @push('addon-script')
     <script>
         var url = window.location.origin;
@@ -118,6 +122,23 @@
 
 
             tabel = $("#tabelbasic").DataTable({
+                // dom: 'Bfrtip',
+                // buttons: [{
+                //     extend: "print",
+                //     text: "Print - Results",
+                //     exportOptions: {
+                //         //columns: ":visible"
+                //         columns: function(idx, data, node) {
+                //             if (node.innerHTML == "Status" || node.hidden)
+                //                 return false;
+                //             else if (node.innerHTML == "Aksi" || node.hidden)
+                //                 return false;
+                //             return true;
+                //         }
+                //     }
+
+
+                // }],
                 columnDefs: [{
                         targets: 0,
                         width: "10%",
@@ -141,6 +162,15 @@
                         targets: 1,
                         width: "10%",
                     },
+
+                    {
+                        targets: 1,
+                        width: "10%",
+                    },
+                    {
+                        targets: 1,
+                        width: "10%",
+                    },
                     {
                         targets: 2,
                         width: "20%",
@@ -150,7 +180,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ url('penduduk/pm') }}",
+                    url: "{{ url('admin/keterangan-pindah-penduduk') }}",
                 },
                 columns: [{
                         nama: 'DT_RowIndex',
@@ -194,44 +224,24 @@
                             }
                         }
                     },
+                    // {
+                    //     nama: 'aksi',
+                    //     data: 'aksi'
+                    // },
                 ],
 
             });
         });
 
         $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
-            $.ajax({
-                url: "{{ url('admin/keterangan-pindah-penduduk') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
-                    $('#submit').html('Submit');
-                    $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
-                    tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
-                }
-            });
-        });
+            var idjenis = $("#id_jenis").val();
+            // var datacetak = $("#datacetak").val();
+            console.log(idjenis);
 
+            var ini = "{{ url('/laporan/') }}" + "/" + idjenis;
+            console.log(ini);
+            window.open(ini, "_blank");
 
-        $(".add").click(function() {
-            var title = " koko";
-            $('#modalbasic').modal('show');
         });
     </script>
 @endpush
