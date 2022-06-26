@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\kk;
 use App\Models\penduduk;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -21,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $penduduk = penduduk::all();
+        return view('auth.register', compact('penduduk'));
     }
 
     /**
@@ -40,30 +42,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $penduduk = penduduk::where('id', $request->id)->get()->first();
+
         $user = User::create([
-            'name' => $request->name,
+            'id' => $request->id,
+            'name' => $penduduk->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => '2',
-        ]);
-
-        $penduduk = penduduk::create([
-            'id' => $user->id,
-            'nik' => $request->nik,
-            'kk' => $request->kk,
-            'nama' => $request->name,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'kepala_keluarga' => $request->kepala_keluarga,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'pendidikan' => $request->pendidikan,
-            'alamat' => $request->alamat,
-            'agama' => $request->agama,
-            'status' => $request->status,
-            'pekerjaan' => $request->pekerjaan,
-            'kewarganegaraan' => $request->kewarganegaraan,
-            'ayah' => $request->ayah,
-            'ibu' => $request->ibu,
         ]);
 
         event(new Registered($user));

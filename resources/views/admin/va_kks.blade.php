@@ -30,6 +30,7 @@
                                         <th>Tempat Lahir</th>
                                         <th>Tanggal Lahir</th>
                                         <th>Status</th>
+                                        <th>Files</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -79,7 +80,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save
+                                changes</button>
                         </div>
                         @csrf
                 </form>
@@ -150,46 +152,52 @@
                     url: "{{ url('admin/kartu-keluarga-sementara') }}",
                 },
                 columns: [{
-                    nama: 'DT_RowIndex',
-                    data: 'DT_RowIndex'
-                }, {
-                    nama: 'nik',
-                    data: 'nik'
-                }, {
-                    nama: 'nama',
-                    data: 'nama'
-                }, {
-                    nama: 'tempat_lahir',
-                    data: 'tempat_lahir'
-                }, {
-                    nama: 'tanggal_lahir',
-                    data: 'tanggal_lahir',
-                    "render": function(data) {
-                        var date = new Date(data);
-                        var month = date.getMonth() + 1;
-                        return (month.toString().length > 1 ? month : "0" + month) + "/" +
-                            date
-                            .getDate() + "/" + date.getFullYear();
-                    }
-                }, {
-                    nama: 'status_kks',
-                    data: 'status_kks',
-                    "searchable": false,
-                    "orderable": false,
-                    "render": function(data, type, row) {
-
-                        if (row.status_kks === 0) {
-                            return 'Belum di Verifikasi';
-                        } else if (row.status_kks == 1) {
-                            return 'Diterima';
-                        } else {
-                            return 'Ditolak';
+                        nama: 'DT_RowIndex',
+                        data: 'DT_RowIndex'
+                    }, {
+                        nama: 'nik',
+                        data: 'nik'
+                    }, {
+                        nama: 'nama',
+                        data: 'nama'
+                    }, {
+                        nama: 'tempat_lahir',
+                        data: 'tempat_lahir'
+                    }, {
+                        nama: 'tanggal_lahir',
+                        data: 'tanggal_lahir',
+                        "render": function(data) {
+                            var date = new Date(data);
+                            var month = date.getMonth() + 1;
+                            return (month.toString().length > 1 ? month : "0" + month) + "/" +
+                                date
+                                .getDate() + "/" + date.getFullYear();
                         }
-                    }
-                }, {
-                    nama: 'aksi',
-                    data: 'aksi'
-                }, ],
+                    }, {
+                        nama: 'status_kks',
+                        data: 'status_kks',
+                        "searchable": false,
+                        "orderable": false,
+                        "render": function(data, type, row) {
+
+                            if (row.status_kks === 0) {
+                                return 'Belum di Verifikasi';
+                            } else if (row.status_kks == 1) {
+                                return 'Diterima';
+                            } else {
+                                return 'Ditolak';
+                            }
+                        }
+                    },
+                    {
+                        nama: 'berkas',
+                        data: 'berkas'
+                    },
+                    {
+                        nama: 'aksi',
+                        data: 'aksi'
+                    },
+                ],
 
             });
         });
@@ -320,6 +328,10 @@
                 })
 
             }
+        }
+
+        function cetak(id) {
+
         }
 
         function hapus(id) {

@@ -8,6 +8,7 @@ use App\Models\penduduk;
 use App\Models\kartu_keluarga_s;
 use App\Models\kelahiran;
 use App\Models\kematian;
+use App\Models\notif;
 
 class CADashboard extends Controller
 {
@@ -29,10 +30,14 @@ class CADashboard extends Controller
         $nlahir = count($lahir);
         $nkematian = count($kematian);
 
+        //notifikasi
+        $notif = notif::all();
+        $nnotif = count($notif);
+
         $npenduduk = count($penduduk);
         $nkks = count($kks);
         // dd($nkks);
-        return view('admin.va_utama', compact('nkks', 'npenduduk', 'nlaki', 'nperempuan', 'nlahir', 'nkematian'));
+        return view('admin.va_utama', compact('nkks', 'npenduduk', 'nlaki', 'nperempuan', 'nlahir', 'nkematian', 'nnotif', 'notif'));
     }
 
     /**

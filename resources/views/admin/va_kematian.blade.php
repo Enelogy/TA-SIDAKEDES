@@ -30,6 +30,7 @@
                                         <th>Tempat Kematian</th>
                                         <th>Tanggal Kematian</th>
                                         <th>Status</th>
+                                        <th>Berkas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -96,13 +97,15 @@
                             <input type="text" class="form-control mb-2" name="tmpt_kem" id="tmpt_kem">
                             <label data-error="wrong" data-success="right" for="penyebab">Penyebab Meninggal</label>
                             <input type="text" class="form-control mb-2" name="penyebab" id="penyebab">
-                            <label data-error="wrong" data-success="right" for="hub_kem">Hubungan dengan Almarhum</label>
+                            <label data-error="wrong" data-success="right" for="hub_kem">Hubungan dengan
+                                Almarhum</label>
                             <input type="text" class="form-control mb-2" name="hub_kem" id="hub_kem">
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save
+                                changes</button>
                         </div>
                         @csrf
                 </form>
@@ -173,45 +176,50 @@
                     url: "{{ url('admin/keterangan-kematian') }}",
                 },
                 columns: [{
-                    nama: 'DT_RowIndex',
-                    data: 'DT_RowIndex'
-                }, {
-                    nama: 'nama_kem',
-                    data: 'nama_kem'
-                }, {
-                    nama: 'nama',
-                    data: 'nama'
-                }, {
-                    nama: 'tmpt_kem',
-                    data: 'tmpt_kem'
-                }, {
-                    nama: 'tanggal',
-                    data: 'tanggal',
-                    "render": function(data) {
-                        var date = new Date(data);
-                        var month = date.getMonth() + 1;
-                        return (month.toString().length > 1 ? month : "0" + month) + "/" + date
-                            .getDate() + "/" + date.getFullYear();
-                    }
-                }, {
-                    nama: 'status_kem',
-                    data: 'status_kem',
-                    "searchable": false,
-                    "orderable": false,
-                    "render": function(data, type, row) {
-
-                        if (row.status_kem === 0) {
-                            return 'Belum di Verifikasi';
-                        } else if (row.status_kem == 1) {
-                            return 'Diterima';
-                        } else {
-                            return 'Ditolak';
+                        nama: 'DT_RowIndex',
+                        data: 'DT_RowIndex'
+                    }, {
+                        nama: 'nama_kem',
+                        data: 'nama_kem'
+                    }, {
+                        nama: 'nama',
+                        data: 'nama'
+                    }, {
+                        nama: 'tmpt_kem',
+                        data: 'tmpt_kem'
+                    }, {
+                        nama: 'tanggal',
+                        data: 'tanggal',
+                        "render": function(data) {
+                            var date = new Date(data);
+                            var month = date.getMonth() + 1;
+                            return (month.toString().length > 1 ? month : "0" + month) + "/" + date
+                                .getDate() + "/" + date.getFullYear();
                         }
-                    }
-                }, {
-                    nama: 'aksi',
-                    data: 'aksi'
-                }, ],
+                    }, {
+                        nama: 'status_kem',
+                        data: 'status_kem',
+                        "searchable": false,
+                        "orderable": false,
+                        "render": function(data, type, row) {
+
+                            if (row.status_kem === 0) {
+                                return 'Belum di Verifikasi';
+                            } else if (row.status_kem == 1) {
+                                return 'Diterima';
+                            } else {
+                                return 'Ditolak';
+                            }
+                        }
+                    }, {
+                        nama: 'berkas',
+                        data: 'berkas'
+                    },
+                    {
+                        nama: 'aksi',
+                        data: 'aksi'
+                    },
+                ],
 
             });
         });

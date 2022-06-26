@@ -30,7 +30,6 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
-
     </style>
 </head>
 
@@ -104,11 +103,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Pengaju</th>
-                        <th>Nama Anak</th>
-                        <th>Tempat, Tanggal Lahir anak</th>
-                        <th>Anak ke</th>
-                        <th>Status</th>
+                        <th>Nama </th>
+                        <th>Tanggal Lahir </th>
+                        <th>Jenis Kelamin</th>
+                        <th>KK</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,25 +119,15 @@
                                 <center>{{ $n->nama }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->nama_lahir }}</center>
+                                <center>{{ $n->tanggal_lahir }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->ttl_lahir }}</center>
+                                <center>{{ $n->jenis_kelamin }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->anak_ke }}</center>
+                                <center>{{ $n->kk }}</center>
                             </td>
-                            <td>
-                                <center>
-                                    @if ($n->status_lahir == 0)
-                                        Belum Diverifikasi
-                                    @elseif ($n->status_lahir == 1)
-                                        Diterima
-                                    @else
-                                        Ditolak
-                                    @endif
-                                </center>
-                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -149,11 +137,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Alm</th>
-                        <th>Nama Pelapor</th>
-                        <th>Tempat Kematian</th>
+                        <th>Nama Almarhum</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Sebab Kematian</th>
                         <th>Tanggal Kematian</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -163,27 +150,16 @@
                                 <center>{{ $no++ }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->nama_kem }}</center>
-                            </td>
-                            <td>
                                 <center>{{ $n->nama }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->tmpt_kem }}</center>
+                                <center>{{ $n->jenis_kelamin }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->tanggal }}</center>
+                                <center>{{ $n->sebab_sk }}</center>
                             </td>
                             <td>
-                                <center>
-                                    @if ($n->status_kem == 0)
-                                        Belum Diverifikasi
-                                    @elseif ($n->status_kem == 1)
-                                        Diterima
-                                    @else
-                                        Ditolak
-                                    @endif
-                                </center>
+                                <center>{{ $n->tgl_sk }}</center>
                             </td>
                         </tr>
                     @endforeach
@@ -283,6 +259,73 @@
                     @endforeach
                 </tbody>
             </table>
+        @elseif ($nama_laporan == 'PINDAH')
+            <table width="525">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Penduduk</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Sebab</th>
+                        <th>Tanggal Pindah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($datakksl as $n)
+                        <tr>
+                            <td>
+                                <center>{{ $no++ }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->nama }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->jenis_kelamin }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->alasan_sp }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->tgl_pindah }}</center>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @elseif ($nama_laporan == 'PENDATANG')
+            <table width="525">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pendatang</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Pelapor</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($datakksl as $n)
+                        <tr>
+                            <td>
+                                <center>{{ $no++ }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->nama }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->jenis_kelamin }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->pelapor }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->tgl_datang }}</center>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
 
         @endif
 

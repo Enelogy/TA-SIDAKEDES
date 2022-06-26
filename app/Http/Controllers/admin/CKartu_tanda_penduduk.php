@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\penduduk;
 use App\Models\ktp_s;
 use Yajra\DataTables\DataTables;
+use App\Models\notif;
 
 class CKartu_tanda_penduduk extends Controller
 {
@@ -17,52 +18,89 @@ class CKartu_tanda_penduduk extends Controller
      */
     public function index()
     {
+
+        //notifikasi
+        $notif = notif::all();
+        $nnotif = count($notif);
         $penduduk = penduduk::all();
         if (request()->ajax()) {
-            return Datatables::of(ktp_s::all())->addIndexColumn()->addColumn('aksi', function ($data) {
-                $dataj = json_encode($data);
+            return Datatables::of(ktp_s::all())->addIndexColumn()
+                ->addColumn('berkas', function ($data) {
 
-                $btn = "<ul class='list-inline mb-0'>
+                    $dataj = json_encode($data);
+
+                    $btn =
+                        "<ul class='list-inline mb-0'>
+        <li class='list-inline-item'>
+        <a href='" . $data->file_ktps . "' target='_blank' class='btn btn-success btn-xs mb-1'>Lihat Berkas</a>
+        </li>
+        </ul>";
+                    return $btn;
+                })->addColumn('aksi', function ($data) {
+                    $dataj = json_encode($data);
+                    if ($data->status_ktps == 1) {
+                        $dataj = json_encode($data);
+                        // url() }}" + "/" + datacetak + "?id_penduduk=" + idpenduduk;
+
+                        $btn = "<ul class='list-inline mb-0'>
                 <li class='list-inline-item'>
-                <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
-                <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
-                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
-                </li>
 
+
+                <a class='btn btn-primary btn-xs mb-1' target = '_blank' href='cetak/ktp-cetak/" . $data->penduduk->id . "'>Cetak</a>
                 </ul>";
-                return $btn;
-            })->addColumn('nama', function ($data) {
-                $btn = $data->penduduk->nama;
-                return $btn;
-            })->addColumn('nik', function ($data) {
-                $btn = $data->penduduk->nik;
-                return $btn;
-            })->addColumn('tempat_lahir', function ($data) {
-                $tempat = $data->penduduk->tempat_lahir;
-                return $tempat;
-            })->addColumn('tanggal_lahir', function ($data) {
-                $tempat = $data->penduduk->tanggal_lahir;
-                return $tempat;
-            })->rawColumns(['aksi', 'nama', 'nik', 'tempat_lahir', 'tanggal_lahir'])->make(true);
+                        // dd();
+                    } else {
+                        $btn = "<ul class='list-inline mb-0'>
+                    <li class='list-inline-item'>
+                    <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
+                    <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
+                    <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
+                    </li>
+
+                    </ul>";
+                    }
+
+
+                    return $btn;
+                })->addColumn('nama', function ($data) {
+                    $btn = $data->penduduk->nama;
+                    return $btn;
+                })->addColumn('nik', function ($data) {
+                    $btn = $data->penduduk->nik;
+                    return $btn;
+                })->addColumn('tempat_lahir', function ($data) {
+                    $tempat = $data->penduduk->tempat_lahir;
+                    return $tempat;
+                })->addColumn('tanggal_lahir', function ($data) {
+                    $tempat = $data->penduduk->tanggal_lahir;
+                    return $tempat;
+                })->rawColumns(['aksi', 'nama', 'nik', 'tempat_lahir', 'tanggal_lahir', 'berkas'])->make(true);
         }
-        return view('admin.va_ktp', compact('penduduk'));
+        return view('admin.va_ktp', compact('penduduk', 'notif', 'nnotif'));
     }
 
     public function ktpk()
     {
+
+        //notifikasi
+        $notif = notif::all();
+        $nnotif = count($notif);
         $penduduk = penduduk::all();
         if (request()->ajax()) {
             return Datatables::of(ktp_s::all())->addIndexColumn()->addColumn('aksi', function ($data) {
+
                 $dataj = json_encode($data);
 
                 $btn = "<ul class='list-inline mb-0'>
-                <li class='list-inline-item'>
-                <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
-                <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
-                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
-                </li>
+                    <li class='list-inline-item'>
+                    <button type='button' data-toggle='modal' onclick='update(" . $data->id . ")'   class='btn btn-success btn-xs mb-1'>Terima</button>
+                    <button type='button' data-toggle='modal' onclick='updatedua(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Tolak</button>
+                    <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
+                    </li>
 
-                </ul>";
+                    </ul>";
+
+
                 return $btn;
             })->addColumn('nama', function ($data) {
                 $btn = $data->penduduk->nama;
@@ -78,7 +116,7 @@ class CKartu_tanda_penduduk extends Controller
                 return $tempat;
             })->rawColumns(['aksi', 'nama', 'nik', 'tempat_lahir', 'tanggal_lahir'])->make(true);
         }
-        return view('admin.va_ktpk', compact('penduduk'));
+        return view('admin.va_ktpk', compact('penduduk', 'notif', 'nnotif'));
     }
 
     /**
@@ -99,19 +137,49 @@ class CKartu_tanda_penduduk extends Controller
      */
     public function store(Request $request)
     {
-        ktp_s::create([
-            "id_penduduk" => $request->id_penduduk,
-            "desa_ktps" => $request->desa_ktps,
-            "kec_ktps" => $request->kec_ktps,
-            "kab_ktps" => $request->kab_ktps,
-            "status_ktps" => 0,
-        ]);
+        if ($request->hasFile('file_ktps')) {
+            $file = $request->file('file_ktps');
 
-        $return = array(
-            'status'    => true,
-            'message'    => 'Data berhasil disimpan..',
-        );
-        return response()->json($return);
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // File extension
+            $extension = $file->getClientOriginalExtension();
+
+            // File upload location
+            $location = 'gambar';
+
+            // Upload file
+            $file->move($location, $filename);
+
+            // File path
+            $filepath = url('gambar/' . $filename);
+
+            $ktp = ktp_s::create([
+                "id_penduduk" => $request->id_penduduk,
+                "desa_ktps" => $request->desa_ktps,
+                "kec_ktps" => $request->kec_ktps,
+                "kab_ktps" => $request->kab_ktps,
+                "status_ktps" => 0,
+                "file_ktps" =>  $filepath,
+            ]);
+
+            notif::create([
+                "jns_notif" => 4,
+                "id_ps" => $ktp->id
+            ]);
+
+            $return = array(
+                'status'    => true,
+                'message'    => 'Data berhasil disimpan..',
+            );
+            return response()->json($return);
+        } else {
+            $return = array(
+                'status'    => false,
+                'message'    => 'Data gagal disimpan..',
+            );
+            return response()->json($return);
+        }
     }
 
     /**
@@ -137,6 +205,8 @@ class CKartu_tanda_penduduk extends Controller
             ->update([
                 'status_ktps' => 1,
             ]);
+        notif::where('jns_notif', 4)->where('id_ps', $id)->delete();
+
         $return = array(
             'status'    => true,
             'message'    => 'Data berhasil diupdate..',
@@ -151,6 +221,7 @@ class CKartu_tanda_penduduk extends Controller
             ->update([
                 'status_ktps' => 2,
             ]);
+        notif::where('jns_notif', 4)->where('id_ps', $id)->delete();
         $return = array(
             'status'    => true,
             'message'    => 'Data berhasil diupdate..',
@@ -179,6 +250,7 @@ class CKartu_tanda_penduduk extends Controller
     public function destroy($id)
     {
         $res = ktp_s::findOrFail($id);
+        notif::where('jns_notif', 4)->where('id_ps', $id)->delete();
         if ($res == null) {
             return false;
         }

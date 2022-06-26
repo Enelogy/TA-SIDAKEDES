@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\CADashboard;
 use App\Http\Controllers\admin\CAKelahiran;
 use App\Http\Controllers\admin\CAKeterangan_pindah_penduduk;
+use App\Http\Controllers\admin\CASirkulasi;
 use App\Http\Controllers\admin\CCetak;
 use App\Http\Controllers\admin\CKartu_keluarga_s;
 use App\Http\Controllers\admin\CKartu_tanda_penduduk;
@@ -32,17 +33,22 @@ use App\Http\Controllers\penduduk\CPPenduduk;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/cetak/kks', [CCetak::class, 'kks']);
-Route::get('/cetak/kk', [CCetak::class, 'kk']);
-Route::get('/cetak/k', [CCetak::class, 'k']);
-Route::get('/cetak/ktp', [CCetak::class, 'ktp']);
-Route::get('/cetak/m', [CCetak::class, 'm']);
+Route::get('admin/cetak/kks-cetak/{id}', [CCetak::class, 'kks']);
+Route::get('admin/cetak/k-cetak/{id}', [CCetak::class, 'k']);
+Route::get('admin/cetak/kk-cetak/{id}', [CCetak::class, 'kk']);
+Route::get('admin/cetak/ktp-cetak/{id}', [CCetak::class, 'ktp']);
+Route::get('admin/cetak/m-cetak/{id}', [CCetak::class, 'm']);
 
 Route::get('/laporan/1', [CCetak::class, 'kksl']);
-Route::get('/laporan/2', [CCetak::class, 'kkl']);
-Route::get('/laporan/3', [CCetak::class, 'kl']);
-Route::get('/laporan/4', [CCetak::class, 'ktpl']);
-Route::get('/laporan/5', [CCetak::class, 'ml']);
+
+Route::get('/laporan/2', [CCetak::class, 'skematian']);
+Route::get('/laporan/3', [CCetak::class, 'spindah']);
+Route::get('/laporan/4', [CCetak::class, 'spendatang']);
+
+// Route::get('/laporan/2', [CCetak::class, 'kkl']);
+// Route::get('/laporan/3', [CCetak::class, 'kl']);
+// Route::get('/laporan/4', [CCetak::class, 'ktpl']);
+// Route::get('/laporan/5', [CCetak::class, 'ml']);
 
 Route::group(
     ['middleware' => ['auth']],
@@ -53,6 +59,10 @@ Route::group(
         Route::resource('admin/adashboard', CADashboard::class);
 
         Route::resource('admin/kelola-data-penduduk', CPenduduk::class);
+        Route::get('admin/kelola-data-penduduk-dua', [CPenduduk::class, 'kk']);
+        Route::get('admin/data-penduduk-kk/{id}', [CPenduduk::class, 'kkdetail']);
+
+
         Route::resource('admin/kartu-keluarga-sementara', CKartu_keluarga_s::class);
         Route::post('admin/kartu-keluarga-sementara/update/{id}', [CKartu_keluarga_s::class, 'edit']);
         Route::post('admin/kartu-keluarga-sementara/updatedua/{id}', [CKartu_keluarga_s::class, 'edit_dua']);
@@ -78,6 +88,19 @@ Route::group(
         Route::get('admin/cetak/k', [CCetak::class, 'kf']);
         Route::get('admin/cetak/ktp', [CCetak::class, 'ktpf']);
         Route::get('admin/cetak/m', [CCetak::class, 'mf']);
+
+        Route::resource('admin/sirkulasi/kelahiran-s', CASirkulasi::class);
+        Route::post('admin/sirkulasi/kelahiran-s/tambah', [CASirkulasi::class, 'tambahk']);
+
+        Route::get('admin/sirkulasi/kematian-s', [CASirkulasi::class, 'kematian']);
+        Route::post('admin/sirkulasi/kematian-s/tambah', [CASirkulasi::class, 'tambahkem']);
+
+        Route::get('admin/sirkulasi/pindah-s', [CASirkulasi::class, 'pindah']);
+        Route::post('admin/sirkulasi/pindah-s/tambah', [CASirkulasi::class, 'tambahpin']);
+
+        Route::get('admin/sirkulasi/pendatang-s', [CASirkulasi::class, 'pendatang']);
+        Route::post('admin/sirkulasi/pendatang-s/tambah', [CASirkulasi::class, 'tambahpen']);
+
 
         Route::get('admin/kelola-kks', [CKartu_keluarga_s::class, 'kksk']);
         Route::get('admin/kelola-kk', [CKematian::class, 'kkk']);

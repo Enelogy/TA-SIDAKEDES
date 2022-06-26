@@ -30,6 +30,7 @@
                                         <th>Tempat, Tanggal Lahir anak</th>
                                         <th>Anak ke</th>
                                         <th>Status</th>
+                                        <th>Berkas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -68,8 +69,8 @@
                                 <label class="mt-3" data-error="wrong" data-success="right" for="nama_lahir">Nama
                                     Anak</label>
                                 <input type="text" name="nama_lahir" id="nama_lahir" class="form-control">
-                                <label class="mt-3" data-error="wrong" data-success="right"
-                                    for="ttl_lahir">Tempat, Tanggal Lahir (Tempat, HH/MM/TTTT)</label>
+                                <label class="mt-3" data-error="wrong" data-success="right" for="ttl_lahir">Tempat,
+                                    Tanggal Lahir (Tempat, HH/MM/TTTT)</label>
                                 <input type="text" name="ttl_lahir" id="ttl_lahir" class="form-control">
                                 <label class="mt-3" data-error="wrong" data-success="right" for="jk_lahir">
                                     Jenis Kelamin Anak
@@ -79,8 +80,8 @@
                                     <option value="laki-laki">laki-laki</option>
                                     <option value="perempuan">perempuan</option>
                                 </select>
-                                <label class="mt-3" data-error="wrong" data-success="right"
-                                    for="alamat_lahir">Alamat Kelahiran</label>
+                                <label class="mt-3" data-error="wrong" data-success="right" for="alamat_lahir">Alamat
+                                    Kelahiran</label>
                                 <input type="text" name="alamat_lahir" id="alamat_lahir" class="form-control">
                                 <label class="mt-3" data-error="wrong" data-success="right" for="ayah_lahir">Nama
                                     Ayah</label>
@@ -95,7 +96,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save
+                                changes</button>
                         </div>
                         @csrf
                 </form>
@@ -196,6 +198,9 @@
                                 return 'Ditolak';
                             }
                         }
+                    }, {
+                        nama: 'berkas',
+                        data: 'berkas'
                     }, {
                         nama: 'aksi',
                         data: 'aksi'

@@ -49,7 +49,7 @@
     <div class="modal fade" id="modalbasic" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="formstatus" id="formstatus" method="post">
+                <form name="formstatus" id="formstatus" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Pengajuan Surat</h5>
 
@@ -65,8 +65,8 @@
                                 <label class="mt-3" data-error="wrong" data-success="right" for="nama_lahir">Nama
                                     Anak</label>
                                 <input type="text" name="nama_lahir" id="nama_lahir" class="form-control">
-                                <label class="mt-3" data-error="wrong" data-success="right"
-                                    for="ttl_lahir">Tempat, Tanggal Lahir (Tempat, HH/MM/TTTT)</label>
+                                <label class="mt-3" data-error="wrong" data-success="right" for="ttl_lahir">Tempat,
+                                    Tanggal Lahir (Tempat, HH/MM/TTTT)</label>
                                 <input type="text" name="ttl_lahir" id="ttl_lahir" class="form-control">
                                 <label class="mt-3" data-error="wrong" data-success="right" for="jk_lahir">
                                     Jenis Kelamin Anak
@@ -76,8 +76,8 @@
                                     <option value="laki-laki">laki-laki</option>
                                     <option value="perempuan">perempuan</option>
                                 </select>
-                                <label class="mt-3" data-error="wrong" data-success="right"
-                                    for="alamat_lahir">Alamat Kelahiran</label>
+                                <label class="mt-3" data-error="wrong" data-success="right" for="alamat_lahir">Alamat
+                                    Kelahiran</label>
                                 <input type="text" name="alamat_lahir" id="alamat_lahir" class="form-control">
                                 <label class="mt-3" data-error="wrong" data-success="right" for="ayah_lahir">Nama
                                     Ayah</label>
@@ -88,11 +88,15 @@
                                 <label class="mt-3" data-error="wrong" data-success="right" for="anak_ke">Anak
                                     Ke-</label>
                                 <input type="number" name="anak_ke" id="anak_ke" class="form-control">
+                                <label class="mt-3" data-error="wrong" data-success="right" for="orangeForm-name">KTP
+                                    / KK</label>
+                                <input class="form-control" type="file" name="file_lahir" id="file_lahir">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save
+                                changes</button>
                         </div>
                         @csrf
                 </form>
@@ -180,31 +184,53 @@
             });
         });
 
-        $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
+        // $('#submit').on('click', function(id) {
+        //     id.preventDefault()
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        //     $('#submit').html('Please Wait...');
+        //     $("#submit").attr("disabled", true);
+        //     $.ajax({
+        //         url: "{{ url('admin/kelahiran') }}",
+        //         type: "POST",
+        //         data: $('#formstatus').serialize(),
+        //         success: function(response) {
+        //             $('#submit').html('Submit');
+        //             $("#submit").attr("disabled", false);
+        //             $('#exampleModal').modal('hide');
+        //             tabel.ajax.reload();
+        //             Lobibox.notify('success', {
+        //                 pauseDelayOnHover: true,
+        //                 continueDelayOnInactiveTab: false,
+        //                 position: 'top right',
+        //                 icon: 'bx bx-check-circle',
+        //                 msg: 'Data Tersimpan'
+        //             });
+        //         }
+        //     });
+        // });
+
+        $('#formstatus').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
             $.ajax({
+                type: 'POST',
                 url: "{{ url('admin/kelahiran') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
                     $('#submit').html('Submit');
                     $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
+                    $('#modalbasic').modal('hide');
                     tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
+                },
+                error: function(data) {
+                    console.log(data);
                 }
             });
         });

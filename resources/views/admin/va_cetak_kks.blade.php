@@ -37,7 +37,7 @@
                                     <option value="">Pilih</option>
                                     @if ($datacetak == 'kks')
                                         @foreach ($datakks as $data)
-                                            <option value={{ $data->id }}>{{ $data->penduduk->nama }}</option>
+                                            <option value={{ $data->penduduk->id }}>{{ $data->penduduk->nama }}</option>
                                         @endforeach
                                     @elseif ($datacetak == 'kk')
                                         @foreach ($datakks as $data)

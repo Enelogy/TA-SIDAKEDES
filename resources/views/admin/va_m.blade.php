@@ -31,6 +31,7 @@
                                         <th>Tanggal Pindah</th>
                                         <th>Alasan Pindah</th>
                                         <th>Status</th>
+                                        <th>Berkas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -102,7 +103,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save changes</button>
+                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Save
+                                changes</button>
                         </div>
                         @csrf
                 </form>
@@ -222,6 +224,10 @@
                                 return 'Ditolak';
                             }
                         }
+                    },
+                    {
+                        nama: 'berkas',
+                        data: 'berkas'
                     },
                     {
                         nama: 'aksi',

@@ -127,13 +127,14 @@ class CCetak extends Controller
         //
     }
 
-    public function kks(Request $request)
+    public function kks($id_penduduk)
     {
-        $id = $request->id_penduduk;
+
         // $datapenduduk = data_kks::where('id_kks', $id)->get();
         $datapenduduk =  DB::table('data_kks')
             ->join('kartu_keluarga_s', 'kartu_keluarga_s.id', '=', 'data_kks.id_kks')
             ->join('penduduks', 'penduduks.id', '=', 'data_kks.id_penduduk_dkks')
+            ->where('id_penduduk', '=', $id_penduduk)
             ->get();
         // dd($datapenduduk[0]->nama);
         $details = [
@@ -149,10 +150,10 @@ class CCetak extends Controller
         // return view('cetak/vc_kks');
     }
 
-    public function k(Request $request)
+    public function k($id_penduduka)
     {
-        $id = $request->id_penduduk;
-        $datalahir = kelahiran::where('id', $id)->get();
+        $id = $id_penduduka;
+        $datalahir = kelahiran::where('id_penduduk', $id)->get();
         $id_penduduk = $datalahir[0]->id_penduduk;
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
@@ -174,10 +175,10 @@ class CCetak extends Controller
         // return view('cetak/vc_kks');
     }
 
-    public function kk(Request $request)
+    public function kk($id_penduduka)
     {
-        $id = $request->id_penduduk;
-        $datakem = kematian::where('id', $id)->get();
+        $id = $id_penduduka;
+        $datakem = kematian::where('id_penduduk', $id)->get();
         $id_penduduk = $datakem[0]->id_penduduk;
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
@@ -200,10 +201,10 @@ class CCetak extends Controller
         // return view('cetak/vc_kks');
     }
 
-    public function ktp(Request $request)
+    public function ktp($id_penduduka)
     {
-        $id = $request->id_penduduk;
-        $dataktp = ktp_s::where('id', $id)->get();
+        $id = $id_penduduka;
+        $dataktp = ktp_s::where('id_penduduk', $id)->get();
         $id_penduduk = $dataktp[0]->id_penduduk;
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
@@ -228,10 +229,10 @@ class CCetak extends Controller
         // return view('cetak/vc_kks');
     }
 
-    public function m(Request $request)
+    public function m($id_penduduka)
     {
-        $id = $request->id_penduduk;
-        $datam = migrasi::where('id', $id)->get();
+        $id = $id_penduduka;
+        $datam = migrasi::where('id_penduduk', $id)->get();
         $id_penduduk = $datam[0]->id_penduduk;
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
@@ -269,14 +270,28 @@ class CCetak extends Controller
     public function kksl(Request $request)
     {
 
-        $datakksl =  DB::table('kartu_keluarga_s')
-            ->join('penduduks', 'penduduks.id', '=', 'kartu_keluarga_s.id_penduduk')
+        // $datakksl =  DB::table('kartu_keluarga_s')
+        //     ->join('penduduks', 'penduduks.id', '=', 'kartu_keluarga_s.id_penduduk')
+        //     ->get();
+
+        // $details = [
+        //     'no' => 1,
+        //     'datakksl' => $datakksl,
+        //     'nama_laporan' => 'KARTU KELUARGA'
+
+        // ];
+
+        // $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        // return $pdf->stream();
+
+        $datakksl =  DB::table('penduduks')
+            ->where('status_p', 2)
             ->get();
 
         $details = [
             'no' => 1,
             'datakksl' => $datakksl,
-            'nama_laporan' => 'KARTU KELUARGA'
+            'nama_laporan' => 'KELAHIRAN'
 
         ];
 
@@ -338,6 +353,102 @@ class CCetak extends Controller
             'no' => 1,
             'datakksl' => $datakksl,
             'nama_laporan' => 'KARTU TANDA PENDUDUK'
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function skematian(Request $request)
+    {
+
+        // $datakksl =  DB::table('kartu_keluarga_s')
+        //     ->join('penduduks', 'penduduks.id', '=', 'kartu_keluarga_s.id_penduduk')
+        //     ->get();
+
+        // $details = [
+        //     'no' => 1,
+        //     'datakksl' => $datakksl,
+        //     'nama_laporan' => 'KARTU KELUARGA'
+
+        // ];
+
+        // $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        // return $pdf->stream();
+
+        $datakksl =  DB::table('s_kematians')
+            ->join('penduduks', 'penduduks.id', '=', 's_kematians.id_penduduk')
+            ->get();
+
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'KEMATIAN'
+
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function spindah(Request $request)
+    {
+
+        // $datakksl =  DB::table('kartu_keluarga_s')
+        //     ->join('penduduks', 'penduduks.id', '=', 'kartu_keluarga_s.id_penduduk')
+        //     ->get();
+
+        // $details = [
+        //     'no' => 1,
+        //     'datakksl' => $datakksl,
+        //     'nama_laporan' => 'KARTU KELUARGA'
+
+        // ];
+
+        // $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        // return $pdf->stream();
+
+        $datakksl =  DB::table('s_pindahs')
+            ->join('penduduks', 'penduduks.id', '=', 's_pindahs.id_penduduk')
+            ->get();
+
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'PINDAH'
+
+        ];
+
+        $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        return $pdf->stream();
+    }
+
+    public function spendatang(Request $request)
+    {
+
+        // $datakksl =  DB::table('kartu_keluarga_s')
+        //     ->join('penduduks', 'penduduks.id', '=', 'kartu_keluarga_s.id_penduduk')
+        //     ->get();
+
+        // $details = [
+        //     'no' => 1,
+        //     'datakksl' => $datakksl,
+        //     'nama_laporan' => 'KARTU KELUARGA'
+
+        // ];
+
+        // $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');
+        // return $pdf->stream();
+
+        $datakksl =  DB::table('s_pendatangs')
+            ->join('penduduks', 'penduduks.id', '=', 's_pendatangs.id_penduduk')
+            ->get();
+
+        $details = [
+            'no' => 1,
+            'datakksl' => $datakksl,
+            'nama_laporan' => 'PENDATANG'
+
         ];
 
         $pdf = PDF::loadview('cetak/vc_kksl', $details)->setPaper('a4', 'potrait');

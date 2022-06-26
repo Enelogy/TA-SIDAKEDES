@@ -25,13 +25,13 @@
                           <i class="ri-pages-line"></i>
                       </a>
                       <a class="nav-link" href="#layouts" data-toggle="tooltip" data-placement="right"
-                          title="Cetak Surat" data-trigger="hover">
+                          title="Sirkulasi Penduduk" data-trigger="hover">
                           <i class="ri-layout-line"></i>
                       </a>
-                      <a class="nav-link" href="#uielements" data-toggle="tooltip" data-placement="right"
+                      {{-- <a class="nav-link" href="#uielements" data-toggle="tooltip" data-placement="right"
                           title="Kelola Laporan" data-trigger="hover">
                           <i class="ri-pencil-ruler-2-line"></i>
-                      </a>
+                      </a> --}}
                   </nav>
               </div>
               <!--- Sidemenu -->
@@ -49,10 +49,13 @@
                       </div>
 
                       <div class="twocolumn-menu-item" id="apps">
-                          <h5 class="menu-title">Data Penduduk</h5>
+                          <h5 class="menu-title">Kelola Data</h5>
                           <ul class="nav flex-column">
                               <li class="nav-item">
-                                  <a class="nav-link" href="/admin/kelola-data-penduduk">Kelola Data</a>
+                                  <a class="nav-link" href="/admin/kelola-data-penduduk">Data Penduduk</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="/admin/kelola-data-penduduk-dua">Data Kartu Keluarga</a>
                               </li>
                           </ul>
                       </div>
@@ -86,31 +89,26 @@
 
                       <div class="twocolumn-menu-item" id="layouts">
                           <div class="title-box">
-                              <h5 class="menu-title">Cetak Surat</h5>
+                              <h5 class="menu-title">Sirkulasi Penduduk</h5>
                               <ul class="nav flex-column">
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/admin/cetak/kks">Kartu Keluarga
-                                          Sementara</a>
+                                      <a class="nav-link" href="/admin/sirkulasi/kelahiran-s">Kelahiran</a>
                                   </li>
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/admin/cetak/k">Kelahiran</a>
+                                      <a class="nav-link" href="/admin/sirkulasi/kematian-s">Kematian</a>
                                   </li>
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/admin/cetak/kk">Keterangan Kematian</a>
+                                      <a class="nav-link" href="/admin/sirkulasi/pindah-s">Pindahan</a>
                                   </li>
                                   <li class="nav-item">
-                                      <a class="nav-link" href="/admin/cetak/ktp">Kartu Tanda Penduduk</a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a class="nav-link" href="/admin/cetak/m">Keterangan Pindah / Pendatang
-                                          Penduduk</a>
+                                      <a class="nav-link" href="/admin/sirkulasi/pendatang-s">Pendatang</a>
                                   </li>
                               </ul>
                           </div>
                       </div>
 
 
-                      <div class="twocolumn-menu-item" id="uielements">
+                      {{-- <div class="twocolumn-menu-item" id="uielements">
                           <div class="title-box">
                               <h5 class="menu-title">Kelola Laporan</h5>
                               <ul class="nav flex-column">
@@ -133,7 +131,7 @@
                                   </li>
                               </ul>
                           </div>
-                      </div>
+                      </div> --}}
                   </div>
 
               </div>
