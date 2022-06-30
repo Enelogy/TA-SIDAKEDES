@@ -59,6 +59,9 @@ Route::group(
         Route::resource('admin/adashboard', CADashboard::class);
 
         Route::resource('admin/kelola-data-penduduk', CPenduduk::class);
+        Route::post('admin/kelola-data-penduduk/update/', [CPenduduk::class, 'edit']);
+
+
         Route::get('admin/kelola-data-penduduk-dua', [CPenduduk::class, 'kk']);
         Route::get('admin/data-penduduk-kk/{id}', [CPenduduk::class, 'kkdetail']);
 

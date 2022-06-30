@@ -34,6 +34,7 @@ class CPenduduk extends Controller
 
                     $btn = "<ul class='list-inline mb-0'>
                 <li class='list-inline-item'>
+                <button type='button' data-toggle='modal' onclick='staffedit(" . $dataj . ")'   class='btn btn-primary btn-xs mb-1'>Edit</button>
                 <button type='button' data-toggle='modal' onclick='staffdel(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
                 </li>
 
@@ -109,6 +110,11 @@ class CPenduduk extends Controller
      */
     public function store(Request $request)
     {
+        // if ($request->id_p == '') {
+        //     dd($request);
+        // } else {
+        //     dd($request);
+        // }
         $penduduk = penduduk::create([
             'nik' => $request->nik,
             'kk' => $request->kk,
@@ -164,9 +170,32 @@ class CPenduduk extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+        penduduk::where('id', $request->id_p)
+            ->update([
+                'nik' => $request->nik,
+                'kk' => $request->kk,
+                'nama' => $request->name,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'kepala_keluarga' => $request->kepala_keluarga,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'pendidikan' => $request->pendidikan,
+                'alamat' => $request->alamat,
+                'agama' => $request->agama,
+                'status' => $request->statuss,
+                'pekerjaan' => $request->pekerjaan,
+                'kewarganegaraan' => $request->kewarganegaraan,
+                'ayah' => $request->ayah,
+                'ibu' => $request->ibu,
+            ]);
+        $return = array(
+            'status'    => true,
+            'message'    => 'Data berhasil disimpan..',
+        );
+        return response()->json($return);
     }
 
     /**
