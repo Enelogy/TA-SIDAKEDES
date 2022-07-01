@@ -51,7 +51,7 @@
     <div class="modal fade" id="modalbasic" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="formstatus" id="formstatus" method="post">
+                <form name="formstatus" id="formstatus" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Pengajuan Surat</h5>
 
@@ -99,6 +99,9 @@
 
                             {{-- <label data-error="wrong" data-success="right" for="jumlah_pindah">Jumlah Pindah</label>
                             <input type="number" name="jumlah_pindah" id="jumlah_pindah" class="form-control mb-3"> --}}
+
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">KTP / KK</label>
+                            <input class="form-control" type="file" name="file_migrasi" id="file_migrasi">
 
                         </div>
                         <div class="modal-footer">
@@ -238,34 +241,34 @@
             });
         });
 
-        $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
-            $.ajax({
-                url: "{{ url('admin/keterangan-pindah-penduduk') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
-                    $('#submit').html('Submit');
-                    $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
-                    tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
-                }
-            });
-        });
+        // $('#submit').on('click', function(id) {
+        //     id.preventDefault()
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        //     $('#submit').html('Please Wait...');
+        //     $("#submit").attr("disabled", true);
+        //     $.ajax({
+        //         url: "{{ url('admin/keterangan-pindah-penduduk') }}",
+        //         type: "POST",
+        //         data: $('#formstatus').serialize(),
+        //         success: function(response) {
+        //             $('#submit').html('Submit');
+        //             $("#submit").attr("disabled", false);
+        //             $('#exampleModal').modal('hide');
+        //             tabel.ajax.reload();
+        //             Lobibox.notify('success', {
+        //                 pauseDelayOnHover: true,
+        //                 continueDelayOnInactiveTab: false,
+        //                 position: 'top right',
+        //                 icon: 'bx bx-check-circle',
+        //                 msg: 'Data Tersimpan'
+        //             });
+        //         }
+        //     });
+        // });
 
 
         $(".add").click(function() {
@@ -368,5 +371,27 @@
 
             }
         }
+
+        $('#formstatus').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('admin/keterangan-pindah-penduduk') }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
+                    $('#submit').html('Submit');
+                    $("#submit").attr("disabled", false);
+                    $('#modalbasic').modal('hide');
+                    tabel.ajax.reload();
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
     </script>
 @endpush

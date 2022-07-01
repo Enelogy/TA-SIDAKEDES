@@ -35,7 +35,7 @@ class CPenduduk extends Controller
                     $btn = "<ul class='list-inline mb-0'>
                 <li class='list-inline-item'>
                 <button type='button' data-toggle='modal' onclick='staffedit(" . $dataj . ")'   class='btn btn-primary btn-xs mb-1'>Edit</button>
-                <button type='button' data-toggle='modal' onclick='staffdel(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
+                <button type='button' data-toggle='modal' onclick='hapus(" . $data->id . ")'   class='btn btn-danger btn-xs mb-1'>Hapus</button>
                 </li>
 
                 </ul>";
@@ -218,6 +218,11 @@ class CPenduduk extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = penduduk::findOrFail($id);
+        if ($res == null) {
+            return false;
+        }
+        $res->delete();
+        return true;
     }
 }

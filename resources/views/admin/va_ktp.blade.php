@@ -50,7 +50,7 @@
     <div class="modal fade" id="modalbasic" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="formstatus" id="formstatus" method="post">
+                <form name="formstatus" id="formstatus" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Pengajuan Surat</h5>
 
@@ -75,6 +75,9 @@
 
                             {{-- <label data-error="wrong" data-success="right" for="kab_ktps">Kabupaten</label> --}}
                             <input class="form-control " type="hidden" name="kab_ktps" id="kab_ktps" value="Barru">
+
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">KTP / KK</label>
+                            <input class="form-control" type="file" name="file_ktps" id="file_ktps">
 
                         </div>
                         <div class="modal-footer">
@@ -197,36 +200,57 @@
             });
         });
 
-        $('#submit').on('click', function(id) {
-            id.preventDefault()
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#submit').html('Please Wait...');
-            $("#submit").attr("disabled", true);
+        // $('#submit').on('click', function(id) {
+        //     id.preventDefault()
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        //     $('#submit').html('Please Wait...');
+        //     $("#submit").attr("disabled", true);
+        //     $.ajax({
+        //         url: "{{ url('admin/kartu-tanda-penduduk') }}",
+        //         type: "POST",
+        //         data: $('#formstatus').serialize(),
+        //         success: function(response) {
+        //             $('#submit').html('Submit');
+        //             $("#submit").attr("disabled", false);
+        //             $('#exampleModal').modal('hide');
+        //             tabel.ajax.reload();
+        //             Lobibox.notify('success', {
+        //                 pauseDelayOnHover: true,
+        //                 continueDelayOnInactiveTab: false,
+        //                 position: 'top right',
+        //                 icon: 'bx bx-check-circle',
+        //                 msg: 'Data Tersimpan'
+        //             });
+        //         }
+        //     });
+        // });
+
+
+        $('#formstatus').submit(function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
             $.ajax({
+                type: 'POST',
                 url: "{{ url('admin/kartu-tanda-penduduk') }}",
-                type: "POST",
-                data: $('#formstatus').serialize(),
-                success: function(response) {
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (data) => {
                     $('#submit').html('Submit');
                     $("#submit").attr("disabled", false);
-                    $('#exampleModal').modal('hide');
+                    $('#modalbasic').modal('hide');
                     tabel.ajax.reload();
-                    Lobibox.notify('success', {
-                        pauseDelayOnHover: true,
-                        continueDelayOnInactiveTab: false,
-                        position: 'top right',
-                        icon: 'bx bx-check-circle',
-                        msg: 'Data Tersimpan'
-                    });
+                },
+                error: function(data) {
+                    console.log(data);
                 }
             });
         });
-
-
         $(".add").click(function() {
             var title = " koko";
             $('#modalbasic').modal('show');

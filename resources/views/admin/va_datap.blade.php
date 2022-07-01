@@ -426,5 +426,39 @@
             $('#jenis_kelamin').val(data.jenis_kelamin);
             $('#email').val('-');
         }
+
+        function hapus(id) {
+            data = confirm("Klik Ok Untuk Melanjutkan");
+
+            if (data) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                // $.LoadingOverlay("show");
+
+                $.ajax({
+                    url: url + '/admin/kelola-data-penduduk/' + id,
+                    type: "delete",
+                    success: function(e) {
+                        console.log(e);
+                        // $.LoadingOverlay("hide");
+                        // Lobibox.notify('success', {
+                        //     pauseDelayOnHover: true,
+                        //     continueDelayOnInactiveTab: false,
+                        //     position: 'top right',
+                        //     icon: 'bx bx-check-circle',
+                        //     msg: 'Data Berhasi Dihapus'
+                        // });
+                        if (e == '1') {
+                            tabel.ajax.reload();
+                        }
+                        // window.location.reload();
+                    }
+                });
+
+            }
+        }
     </script>
 @endpush
