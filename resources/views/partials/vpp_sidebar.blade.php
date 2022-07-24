@@ -85,7 +85,9 @@
                               <h5 class="menu-title">Kontak Kami</h5>
                               <ul class="nav flex-column">
                                   <li class="nav-item">
-                                      <a class="nav-link" href="https://minur.id">situs</a>
+                                      <a class="nav-link" href="#">0858 – 2323 - 4704</a>
+                                      <a class="nav-link" href="#">0877 - 7909 - 8453</a>
+                                      <a class="nav-link" href="#">0823 – 9308 - 8112</a>
                                   </li>
                               </ul>
                           </div>

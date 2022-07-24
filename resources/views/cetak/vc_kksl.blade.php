@@ -103,9 +103,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama </th>
-                        <th>Tanggal Lahir </th>
+                        <th>Nama Bayi</th>
+                        <th>Tanggal Lahir</th>
                         <th>Jenis Kelamin</th>
+                        <th>Ayah</th>
+                        <th>Ibu</th>
                         <th>KK</th>
                     </tr>
                 </thead>
@@ -119,10 +121,16 @@
                                 <center>{{ $n->nama }}</center>
                             </td>
                             <td>
-                                <center>{{ $n->tanggal_lahir }}</center>
+                                <center>{{ date('d-m-Y', strtotime($n->tanggal_lahir)) }}</center>
                             </td>
                             <td>
                                 <center>{{ $n->jenis_kelamin }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->ayah }}</center>
+                            </td>
+                            <td>
+                                <center>{{ $n->ibu }}</center>
                             </td>
                             <td>
                                 <center>{{ $n->kk }}</center>
