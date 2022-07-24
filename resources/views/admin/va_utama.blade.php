@@ -138,11 +138,11 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="knob-chart" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#6559cc"
-                                        data-bgColor="#ebefff" value="0" data-skin="tron" data-angleOffset="0"
-                                        data-readOnly=true data-thickness=".15" />
+                                        data-bgColor="#ebefff" value="{{ $npendatang }}" data-skin="tron"
+                                        data-angleOffset="0" data-readOnly=true data-thickness=".15" />
                                 </div>
                                 <div class="text-right">
-                                    <h3 class="mb-1 mt-0"> 0 </h3>
+                                    <h3 class="mb-1 mt-0"> {{ $npendatang }} </h3>
                                     <p class="text-muted mb-0">Pendatang</p>
                                 </div>
                             </div>
@@ -156,11 +156,11 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="knob-chart" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#6559cc"
-                                        data-bgColor="#ebefff" value="0" data-skin="tron" data-angleOffset="0"
-                                        data-readOnly=true data-thickness=".15" />
+                                        data-bgColor="#ebefff" value="{{ $npindah }}" data-skin="tron"
+                                        data-angleOffset="0" data-readOnly=true data-thickness=".15" />
                                 </div>
                                 <div class="text-right">
-                                    <h3 class="mb-1 mt-0"> 0 </h3>
+                                    <h3 class="mb-1 mt-0"> {{ $npindah }} </h3>
                                     <p class="text-muted mb-1">Pindah</p>
                                 </div>
                             </div>

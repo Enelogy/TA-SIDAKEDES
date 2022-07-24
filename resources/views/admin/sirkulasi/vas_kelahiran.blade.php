@@ -34,6 +34,8 @@
                                         <th>KK</th>
                                         <th>Nama</th>
                                         <th>Jenis Kelamin</th>
+                                        <th>Ayah</th>
+                                        <th>Ibu</th>
                                         <th>Tanggal Lahir</th>
                                     </tr>
                                 </thead>
@@ -116,6 +118,12 @@
                     }, {
                         nama: 'jenis_kelamin',
                         data: 'jenis_kelamin'
+                    },{
+                        nama: 'ayah',
+                        data: 'ayah'
+                    },{
+                        nama: 'ibu',
+                        data: 'ibu'
                     },
                     {
                         nama: 'tanggal_lahir',

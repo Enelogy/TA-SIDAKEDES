@@ -32,9 +32,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href="#projects">Libureng</a></li> --}}
+                    {{-- <li class="nav-item"><a class="nav-link" href="#signup">Libureng</a></li> --}}
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Masuk</a></li>
                 </ul>
             </div>
         </div>
@@ -46,7 +47,7 @@
                 <div class="text-center">
                     <h1 class="mx-auto my-0 text-uppercase">SIDAKEDES</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Sistem Informasi Data Kependudukan Desa.</h2>
-                    <a class="btn btn-primary" href="{{ route('login') }}">MASUK</a>
+                    {{-- <a class="btn btn-primary" href="{{ route('login') }}">MASUK</a> --}}
                 </div>
             </div>
         </div>
@@ -56,12 +57,13 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8">
-                    <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
+                    <h2 class="text-white mb-4">Desa Libureng</h2>
                     <p class="text-white-50">
-                        Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now,
-                        simply download the template on
-                        <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                        The theme is open source, and you can use it for any purpose, personal or commercial.
+                        Desa Libureng Merupakan kawasan agropolitan (pertanian, perikanan air tawar, perkebunan, hasil
+                        hutan dan peternakan sapi) dan Wisata alam dan merupakan desa pra sejahtera yang memiliki 5
+                        (Lima) Dusun Yaitu: Dusun Cempae, Dusun Ulo, Dusun Panincong, Dusun Watu, Dusun Pacciro.
+                        Desa Libureng
+
                     </p>
                 </div>
             </div>
@@ -73,14 +75,17 @@
         <div class="container px-4 px-lg-5">
             <!-- Featured Project Row-->
             <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                {{-- <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0"
+                        src="{{ asset('grayscale/dist/') }}/assets/img/bg-masthead.jpg" alt="..." /></div> --}}
                 <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0"
-                        src="{{ asset('grayscale/dist/') }}/assets/img/bg-masthead.jpg" alt="..." /></div>
+                        src="{{ asset('web/') }}/kantordesa.jpg" alt="..." /></div>
                 <div class="col-xl-4 col-lg-5">
                     <div class="featured-text text-center text-lg-left">
-                        <h4>Shoreline</h4>
-                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use
-                            it for any project - even commercial projects! Download it, customize it, and publish your
-                            website!</p>
+                        <h4>Kantor Desa Libureng</h4>
+                        <p class="text-black-50 mb-0">Kantor Desa Libureng merupakan salah satu pusat pemerintahan dan
+                            Pelayanan Publik Desa yang berada di kecamatan Tanete Riaja tepatnya di Jl. Poros soppeng,
+                            Dusun Panincong, Desa Libureng, kabupaten Barru. Provinsi Sulawesi selatan, Indonesia. Kode
+                            pos 90762. !</p>
                     </div>
                 </div>
             </div>
@@ -90,13 +95,32 @@
                         src="{{ asset('grayscale/dist/') }}/assets/img/demo-image-01.jpg" alt="..." />
                 </div>
                 <div class="col-lg-6">
-                    <div class="bg-black text-center h-100 project">
+                    <div class="bg-black  h-100 project">
                         <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h4 class="text-white">Misty</h4>
-                                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or
-                                    anything else, along with a description.</p>
-                                <hr class="d-none d-lg-block mb-0 ms-0" />
+                            <div class="project-text w-100 my-auto  text-lg-left">
+                                <h5 class="text-white">Visi</h5>
+                                <p class="mb-1 text-white-50">1. Optimalisasi Pelayanan berarti
+                                    Mewujudkan harmonisasi
+                                    antar kelembagaan yang ada di desa libureng sehingga terjalin sinergitas kinerja
+                                    yang optimal
+                                </p>
+                                <p class="mb-1 text-white-50">2. Maju berarti: Meningkatkan dan
+                                    Pengembangan kecakapan
+                                    hidup dan keterampilan masyarakat agar tumbuh kemandirian menuju kemajuan kehidupan
+                                    dan peningkatan kesejatraan Masyarakat di Desa.
+                                </p>
+                                <p class="mb-1 text-white-50">3. Mandiri berarti: mampu dan
+                                    siap serta bertanggung jawab
+                                    dalam melaksanakan tata kelola Pemerintahan desa dengan melibatkan seluruh elemen
+                                    dan unsur masyarakat desa secara, swadaya,swakelola, dan swasembada
+                                </p>
+                                <p class="mb-1 text-white-50">4. Sejarah berarti: Tercukupinya
+                                    kebutuhan pokok material
+                                    dan spiritual bagi masyarakat, yang ditandai dengan meningkatnya kualitas kehidupan
+                                    perekonimian, derajat kesehatan dan kualitas sumberdaya manusia bagi seluruh
+                                    masyarakat yang di dukung oleh kepastian hukum dan Hak Azasi manusia.
+                                </p>
+                                {{-- <hr class="d-none d-lg-block mb-0 ms-0" /> --}}
                             </div>
                         </div>
                     </div>
@@ -108,14 +132,29 @@
                         src="{{ asset('grayscale/dist/') }}/assets/img/demo-image-02.jpg" alt="..." />
                 </div>
                 <div class="col-lg-6 order-lg-first">
-                    <div class="bg-black text-center h-100 project">
+                    <div class="bg-black h-100 project">
                         <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white">Mountains</h4>
-                                <p class="mb-0 text-white-50">Another example of a project with its respective
-                                    description. These sections work well responsively as well, try this theme on a
-                                    small screen!</p>
-                                <hr class="d-none d-lg-block mb-0 me-0" />
+                            <div class="project-text w-100 my-auto  text-lg-right">
+                                <h4 class="text-white">Misi</h4>
+                                <p class="mb-1 text-white-50">1. Meningkatkan Pelanyanan aparatur desa bag pemenuhan
+                                    pelayanan public Meningkatkan Pembangunan Infrastruktur yang mendukung perekonomian
+                                    desa
+                                </p>
+                                <p class="mb-1 text-white-50"> 2. Meningkatkan Pembangunan di bidang Ilmu Pengetahuan
+                                    untuk mendorong peningkatan
+                                    kualitas sumber daya manusia agar memliki kecerdasan dan daya sain yang lebi baik
+                                </p>
+                                <p class="mb-1 text-white-50">3. Meningkatkan Pembangunan Ekonomi dengan mendorong
+                                    semakin tumbuh dan
+                                    berkembangnya pembangunan di Bidang Pertanian, Usaha Kecil dan Parawisata yang ada
+                                    di Desa
+                                </p>
+                                <p class="mb-1 text-white-50">
+                                    4. Mewujutkan SDM yang sehat,cerdas, produktif dan berdaya sain Menciptakan
+                                    masyarakat yang memiliki kearifan budaya local kondisi social yang baik menhadapi
+                                    tantangan arus gelobalisasi dengan berlandaskan ketuhanan yang Maha Esa
+                                </p>
+                                {{-- <hr class="d-none d-lg-block mb-0 me-0" /> --}}
                             </div>
                         </div>
                     </div>
@@ -125,56 +164,15 @@
     </section>
     <!-- Signup-->
     <section class="signup-section" id="signup">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-10 col-lg-8 mx-auto text-center">
-                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                    <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col"><input class="form-control" id="emailAddress" type="email"
-                                    placeholder="Enter email address..." aria-label="Enter email address..."
-                                    data-sb-validations="required,email" /></div>
-                            <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton"
-                                    type="submit">Notify Me!</button></div>
-                        </div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is
-                            required.</div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.
-                        </div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2 text-white">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a
-                                    href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                            </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                            <div class="text-center text-danger mb-3 mt-2">Error sending message!</div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="row text-center">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5923.340551702791!2d119.7152588069018!3d-4.51618178412376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbe23140207fcc9%3A0x477fb62bdc54dcaa!2sMasjid%20Nurul%20Amin!5e0!3m2!1sen!2sid!4v1657871041407!5m2!1sen!2sid"
+                width="100" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
         </div>
     </section>
+
     <!-- Contact-->
     <section class="contact-section bg-black">
         <div class="container px-4 px-lg-5">
@@ -185,7 +183,8 @@
                             <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Address</h4>
                             <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+                            <div class="small text-black-50">Jl. Poros soppeng, Dusun Panincong, Desa Libureng,
+                                kabupaten Barru. Provinsi Sulawesi selatan, Indonesia.</div>
                         </div>
                     </div>
                 </div>
@@ -205,7 +204,9 @@
                             <i class="fas fa-mobile-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Phone</h4>
                             <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">+1 (555) 902-8832</div>
+                            <div class="small text-black-50">0858 – 2323 - 4704</div>
+                            <div class="small text-black-50">0877 - 7909 - 8453</div>
+                            <div class="small text-black-50">0823 – 9308 - 8112</div>
                         </div>
                     </div>
                 </div>
@@ -230,6 +231,7 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
 </body>
 
 </html>
