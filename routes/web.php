@@ -14,6 +14,7 @@ use App\Http\Controllers\penduduk\CPkks;
 use App\Http\Controllers\penduduk\dashboard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\penduduk\CPK;
+use App\Http\Controllers\penduduk\CPKontak;
 use App\Http\Controllers\penduduk\CPKtp;
 use App\Http\Controllers\penduduk\CPM;
 use App\Http\Controllers\penduduk\CPPanduan;
@@ -124,6 +125,7 @@ Route::group(
         Route::resource('penduduk/pk', CPK::class);
         Route::resource('penduduk/pktp', CPKtp::class);
         Route::resource('penduduk/pm', CPM::class);
+        Route::resource('penduduk/kontak', CPKontak::class);
     }
 );
 
