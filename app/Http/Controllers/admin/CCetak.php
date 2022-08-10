@@ -158,6 +158,7 @@ class CCetak extends Controller
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
         $details = [
+            'id' => $datalahir[0]->id,
             'nama_lahir' => $datalahir[0]->nama_lahir,
             'ttl_lahir' => $datalahir[0]->ttl_lahir,
             'jk_lahir' => $datalahir[0]->jk_lahir,
@@ -183,6 +184,7 @@ class CCetak extends Controller
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
         $details = [
+            'id' => $datakem[0]->id,
             'nama_kem' => $datakem[0]->nama_kem,
             'jk_kem' => $datakem[0]->jk_kem,
             'alamat_kem' => $datakem[0]->alamat_kem,
@@ -209,6 +211,7 @@ class CCetak extends Controller
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
         $details = [
+            'id' => $datapenduduk[0]->id,
             'nama' => $datapenduduk[0]->nama,
             'jenis_kelamin' => $datapenduduk[0]->jenis_kelamin,
             'tempat_lahir' => $datapenduduk[0]->tempat_lahir,
@@ -237,6 +240,7 @@ class CCetak extends Controller
         $datapenduduk = penduduk::where('id', $id_penduduk)->get();
 
         $details = [
+            'id' => $datapenduduk[0]->id,
             'nama' => $datapenduduk[0]->nama,
             'jenis_kelamin' => $datapenduduk[0]->jenis_kelamin,
             'tempat_lahir' => $datapenduduk[0]->tempat_lahir,
